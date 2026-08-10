@@ -5,8 +5,13 @@
  */
 
 :root {
-  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  /* "Noto Serif/Sans JP" はOS内蔵やGoogle Fontsでの配布名、"Noto Serif/Sans CJK JP" は
+     Linux(Debian/Ubuntu)の fonts-noto-cjk パッケージが実際にインストールする内部名。
+     CI(GitHub Actions)でPDFをビルドする際にCJKフォントが1つも無いと文字が欠落するため、
+     .github/workflows/*.yml で `apt-get install -y fonts-noto-cjk` を実行し、
+     ここでは両方の名前を候補に入れて確実にヒットさせる（Issue #5）。 */
+  --font-serif: "Noto Serif JP", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   --color-text: #1a1a1a;
   --color-muted: #666666;
   --color-accent: #1f6f5c;
