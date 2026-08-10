@@ -8,11 +8,11 @@
   "name": "ネットワーク入門テキスト（仮）",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-08-10T13:41:51.598Z",
+  "dateModified": "2026-08-10T13:51:53.956Z",
   "readingOrder": [
     {
       "url": "index.html",
-      "name": "Table of Contents",
+      "name": "目次",
       "rel": "contents",
       "type": "LinkedResource"
     },
