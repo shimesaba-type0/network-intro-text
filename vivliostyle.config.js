@@ -43,6 +43,10 @@ export default defineConfig({
   // ドキュメント（Mermaid変換手順のサンプル等）なので、Web/PDFの成果物には含めない。
   copyAsset: {
     excludes: ["docs/**"],
+    // .txt はデフォルトのアセット拡張子に含まれないため、明示的に含める。
+    // theme/fonts/*.woff2（HackGen Console NF, SIL OFL 1.1）を配布する際に、
+    // ライセンス全文を同じ場所に同梱しておくため。
+    includes: ["theme/fonts/LICENSE-HackGen.txt"],
   },
   output: [
     {

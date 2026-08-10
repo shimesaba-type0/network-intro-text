@@ -119,6 +119,10 @@ WOFF2ファイルを`theme/fonts/`に同梱し`@font-face`で読み込んでい�
 ライセンス全文は[`theme/fonts/LICENSE-HackGen.txt`](./theme/fonts/LICENSE-HackGen.txt)に同梱しています。
 本文（見出し・地の文）のフォントはOS/Viewer側のNoto Sans/Serif JP等に委ねており、同梱していません。
 
+同梱しているWOFF2は、[公式リリース v2.10.0](https://github.com/yuru7/HackGen/releases/tag/v2.10.0)の
+TTF（`HackGenConsoleNF-Regular.ttf`/`-Bold.ttf`）をグリフ・ヒンティングとも無改変のままフォーマット変換
+（TTF→WOFF2）しただけのものです。
+
 ## GitHub側で手動設定が必要な項目（Claude Codeでは実行不可）
 
 以下はGitHubのWeb UIから行う必要があり、このセットアップでは未設定です。
