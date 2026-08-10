@@ -13,6 +13,10 @@ Single Source Multi Output 方式の技術書プロジェクトです。
   [docs/drawio-to-svg.md](./docs/drawio-to-svg.md)を参照）
 - **ライセンス**: [CC BY-NC-ND 4.0](./LICENSE.md)（本文・図版などのコンテンツが対象）
 
+これらの方針の背景・決定理由は
+[ADR-001: Web/PDF公開パイプラインおよび図版制作方針](./docs/adr/ADR-001-web-pdf-publishing-pipeline.md)
+にまとめています。
+
 ## 想定読者
 
 ネットワークの基礎を、体系立てて・実務やクラウド活用にもつながる形で学びたい入門者を想定しています。
@@ -27,7 +31,7 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 │   ├── 01-第01章.md 〜 14-第12章.md（幕間2箇所を含む）
 │   ├── 15-終章.md
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
-│   └── 99-colophon.md     奥付（PDF巻末）
+│   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
 ├── assets/
 │   ├── mermaid/           Mermaid図のソース（*.mmd）
@@ -72,7 +76,8 @@ npm run mermaid:build
 ### Web版の閲覧方法について
 
 `npm run build:webpub` で生成される `dist/webpub/` は、ページ送りのない素のHTML/JSON
-（WebPub）です。これ自体はViewerを内蔵していません。ADR-001の方針により、このリポジトリでは
+（WebPub）です。これ自体はViewerを内蔵していません。
+[ADR-001](./docs/adr/ADR-001-web-pdf-publishing-pipeline.md)の方針により、このリポジトリでは
 Viewerを自己ホストせず、公式の [Vivliostyle Viewer](https://vivliostyle.org/viewer/) に
 WebPubのURL（`publication.json`）を読み込ませる方式を採ります。`site/index.html` が、
 デプロイ後のWebPubへの絶対URLから自動的にViewerへのリンクを組み立てます。
@@ -98,7 +103,9 @@ GitHub Pagesのデプロイソースは **「Deploy from a branch」**（`gh-pag
    `© Takashi Kouno ・ CC BY-NC-ND 4.0` の1行 + legalcodeへの参照をWeb/PDF共通のページフッターとして表示
 2. **専用ページ**（Web/PDF共通）: [`manuscript/90-license.md`](./manuscript/90-license.md) に
    条件のかみ砕いた説明を掲載
-3. **PDFの奥付**（巻末1ページ）: [`manuscript/99-colophon.md`](./manuscript/99-colophon.md)
+3. **奥付**（Web/PDF共通、末尾ページ）: [`manuscript/99-colophon.md`](./manuscript/99-colophon.md)。
+   `vivliostyle.config.js`の`manuscript`配列はWeb/PDF共通の単一エントリなので、`90-license.md`と
+   同様にWeb版にも含まれる（PDF限定のページではない）
 
 リポジトリ全体のライセンス全文（CC BY-NC-ND 4.0の公式条文＋日本語でのかみ砕いた説明）は
 [`LICENSE.md`](./LICENSE.md) を参照してください。

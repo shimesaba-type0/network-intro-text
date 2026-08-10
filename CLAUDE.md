@@ -6,7 +6,8 @@
 
 「ネットワーク入門テキスト（仮）」— Markdown原稿1本からWeb版とPDF版を同時生成する
 Single Source Multi Output方式の技術書。詳細は [`README.md`](./README.md) を参照。
-ビルドパイプライン・図版方針・ライセンス方針はADR-001に準拠している。
+ビルドパイプライン・図版方針・ライセンス方針は
+[ADR-001](./docs/adr/ADR-001-web-pdf-publishing-pipeline.md) に準拠している。
 
 **著者**: 河野 崇（ローマ字: Takashi Kouno）。著作権表示・奥付など、著者名を出す箇所では
 このローマ字表記（`Takashi Kouno`）をデフォルトとし、読者向けの日本語ページ（奥付、ライセンス

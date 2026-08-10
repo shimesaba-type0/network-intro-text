@@ -1,6 +1,6 @@
 # draw.io図をSVGに変換する手順
 
-ADR-001に基づき、配置（レイアウト）そのものに意味を持たせたい図（ネットワーク構成図など）は
+[ADR-001](./adr/ADR-001-web-pdf-publishing-pipeline.md)に基づき、配置（レイアウト）そのものに意味を持たせたい図（ネットワーク構成図など）は
 draw.io（diagrams.net）で作成し、Mermaid図と同様に**事前にSVGへレンダリングしてから**
 Markdown原稿に埋め込む。使い分けの目安は [`mermaid-to-svg.md`](./mermaid-to-svg.md) を参照。
 

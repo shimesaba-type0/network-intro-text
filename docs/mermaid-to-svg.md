@@ -1,6 +1,6 @@
 # Mermaid図をSVGに変換する手順
 
-ADR-001（図版制作方針）に基づき、時系列・関係性を表す図は Mermaid で記述し、
+[ADR-001](./adr/ADR-001-web-pdf-publishing-pipeline.md)（図版制作方針）に基づき、時系列・関係性を表す図は Mermaid で記述し、
 mermaid-cli (`mmdc`) で**事前にSVGへレンダリングしてから**Markdown原稿に埋め込む。
 （Vivliostyleにmermaidコードブロックをそのまま渡してブラウザ内でレンダリングさせる方式は採用しない。
 ビルドを純粋なCSS組版に保ち、Web/PDF両方で常に同じ見た目のSVGになるようにするため。）
