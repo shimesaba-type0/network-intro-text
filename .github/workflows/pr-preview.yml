@@ -39,6 +39,12 @@ jobs:
         # （lockfileを追加した場合は npm ci に切り替えることを推奨）
         run: npm install
 
+      - name: Install Japanese fonts
+        if: github.event.action != 'closed'
+        # ubuntu-latestランナーにはCJKフォントが1つも入っておらず、日本語がPDFで
+        # トーフ（文字化け）になる（Issue #5）。theme/style.cssのフォント指定と対応させる。
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
       - name: Cache Vivliostyle browser
         if: github.event.action != 'closed'
         uses: actions/cache@v4
