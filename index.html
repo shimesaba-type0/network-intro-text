@@ -54,10 +54,10 @@
 <script>
   (function () {
     var pubUrl = new URL("./webpub/publication.json", location.href).href;
-    var viewerUrl =
-      "https://vivliostyle.org/viewer/#src=" +
-      encodeURIComponent(pubUrl) +
-      "&bookMode=true";
+    // Vivliostyle Viewerは #src= の値を生のURLとして読む（encodeURIComponentすると
+    // Viewerが "https://" を認識できず、Viewer自身のオリジンに対する相対パスとして
+    // 誤解釈してしまい 404 になる（Issue #3）。
+    var viewerUrl = "https://vivliostyle.org/viewer/#src=" + pubUrl + "&bookMode=true";
     document.getElementById("web-link").href = viewerUrl;
   })();
 </script>
