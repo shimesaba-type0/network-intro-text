@@ -1,0 +1,69 @@
+name: PR Preview
+
+# PRごとにWeb(WebPub)+PDFをビルドし、gh-pagesブランチの pr-preview/pr-<番号>/ 配下に
+# デプロイする（pr-preview-action）。GitHub Pagesのデプロイソースは
+# 「Deploy from a branch」（gh-pages branch, / (root)）に設定しておく必要がある
+# （pr-preview-actionは「GitHub Actions」デプロイ方式とは非互換のため）。
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+# 本番デプロイ(deploy.yml)と同じgh-pagesブランチにpushするため、
+# 両ワークフローで同じconcurrency groupを共有してpushの競合を避ける。
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # package-lock.json をコミットしていないため cache: npm は指定しない
+          # （setup-nodeのnpmキャッシュはロックファイルの存在を必須とし、無いとジョブが失敗する）
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        # package-lock.json はコミットしていないため npm ci ではなく npm install を使う
+        # （lockfileを追加した場合は npm ci に切り替えることを推奨）
+        run: npm install
+
+      - name: Cache Vivliostyle browser
+        if: github.event.action != 'closed'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vivliostyle/browsers
+          # package-lock.json は非コミット運用のため hashFiles() が常に空になる package.json を使う
+          key: vivliostyle-browsers-${{ runner.os }}-${{ hashFiles('package.json') }}
+
+      - name: Build Web(WebPub) + PDF
+        if: github.event.action != 'closed'
+        run: npm run build
+
+      - name: Assemble preview site (Web + PDF)
+        if: github.event.action != 'closed'
+        run: |
+          rm -rf site-preview
+          mkdir -p site-preview
+          cp -r dist/webpub site-preview/webpub
+          cp dist/book.pdf site-preview/book.pdf
+          cp site/index.html site-preview/index.html
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./site-preview
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto

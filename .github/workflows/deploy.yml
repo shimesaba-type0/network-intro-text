@@ -1,0 +1,68 @@
+name: Deploy (production)
+
+# mainへのマージ時に Web(WebPub) + PDF をビルドし、gh-pagesブランチのルートに本番デプロイする。
+# GitHub Pagesのデプロイソースは「Deploy from a branch」（gh-pages branch, / (root)）に
+# 設定しておく必要がある（pr-preview-actionとの非互換のため「GitHub Actions」デプロイ方式は使わない）。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# pr-preview.yml と同じgh-pagesブランチにpushするため、
+# 両ワークフローで同じconcurrency groupを共有してpushの競合を避ける。
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # package-lock.json をコミットしていないため cache: npm は指定しない
+          # （setup-nodeのnpmキャッシュはロックファイルの存在を必須とし、無いとジョブが失敗する）
+
+      - name: Install dependencies
+        # package-lock.json はコミットしていないため npm ci ではなく npm install を使う
+        # （lockfileを追加した場合は npm ci に切り替えることを推奨）
+        run: npm install
+
+      - name: Cache Vivliostyle browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vivliostyle/browsers
+          # package-lock.json は非コミット運用のため hashFiles() が常に空になる package.json を使う
+          key: vivliostyle-browsers-${{ runner.os }}-${{ hashFiles('package.json') }}
+
+      - name: Build Web(WebPub) + PDF
+        run: npm run build
+
+      - name: Assemble production site (Web + PDF)
+        run: |
+          rm -rf site-deploy
+          mkdir -p site-deploy
+          cp -r dist/webpub site-deploy/webpub
+          cp dist/book.pdf site-deploy/book.pdf
+          cp site/index.html site-deploy/index.html
+
+      - name: Deploy to GitHub Pages (gh-pages branch, root)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site-deploy
+          publish_branch: gh-pages
+          # pr-preview-action が管理する pr-preview/ 配下を巻き込んで消さないよう保持する。
+          # トレードオフ: ルート直下から削除されたファイルはここでは自動的に掃除されない
+          # （章ファイルの大規模なリネーム・削除をした際は、必要に応じて手動でgh-pagesを整理する）。
+          keep_files: true
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"

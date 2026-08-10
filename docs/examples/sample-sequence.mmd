@@ -1,0 +1,7 @@
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: SYN
+    Server-->>Client: SYN-ACK
+    Client->>Server: ACK
+    Note over Client,Server: TCP 3ウェイハンドシェイク成立

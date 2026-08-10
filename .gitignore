@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# ロックファイルはコミットしない運用（このセットアップの制約により`npm install`を使う。
+# `npm ci`に切り替える場合は、このエントリを外して package-lock.json をコミットすること）
+package-lock.json
+
+# Vivliostyle CLI ビルド生成物
+.vivliostyle/
+/dist/
+/output/
+*.pdf
+!assets/**/*.pdf
+
+# mermaid-cli が一時的に生成するファイル
+*.mermaid.tmp
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ログ
+*.log
