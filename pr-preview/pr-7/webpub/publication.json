@@ -8,7 +8,7 @@
   "name": "ネットワーク入門テキスト（仮）",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-08-10T15:05:11.849Z",
+  "dateModified": "2026-08-10T15:16:36.143Z",
   "readingOrder": [
     {
       "url": "index.html",
@@ -92,6 +92,7 @@
   "resources": [
     "theme/fonts/HackGenConsoleNF-Bold.woff2",
     "theme/fonts/HackGenConsoleNF-Regular.woff2",
+    "theme/fonts/LICENSE-HackGen.txt",
     "theme/style.css"
   ],
   "links": []
