@@ -43,6 +43,15 @@ npm run mermaid:build     # assets/mermaid/*.mmd を assets/images/*.svg に一�
   Web+PDFをデプロイ）、`deploy.yml`（mainマージ時に同ブランチのルートへ本番デプロイ、
   `keep_files: true`でpr-preview配下と共存）。
 
+## 原稿・ドキュメントの文体
+
+- **読者向けコンテンツ**（`manuscript/`配下の本文、`README.md`、`LICENSE.md`の日本語説明、
+  `site/index.html`）は**です・ます調**で統一する。
+- **執筆者・AIエージェント向けの内部ドキュメント**（この`CLAUDE.md`、`.agents/`配下、`docs/`配下の
+  手順書・ADR）は、体言止め・である調中心のplainな記述でよい（読者向けの丁寧さは不要）。
+- `reviewer`エージェントは、リポジトリ全体でこの区分どおりに統一されているかを確認する
+  （区分をまたいだ揺れ＝read対象、区分内での揺れも同様）。
+
 ## ブランチ運用・セキュリティ設定
 
 - `main`はRuleset保護済み: PR必須（承認数0＝セルフレビュー可）、force push禁止、

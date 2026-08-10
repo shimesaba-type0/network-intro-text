@@ -44,7 +44,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/vivliostyle/browsers
-          key: vivliostyle-browsers-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          # package-lock.json は非コミット運用のため hashFiles() が常に空になる package.json を使う
+          key: vivliostyle-browsers-${{ runner.os }}-${{ hashFiles('package.json') }}
 
       - name: Build Web(WebPub) + PDF
         if: github.event.action != 'closed'

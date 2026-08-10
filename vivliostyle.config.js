@@ -36,6 +36,7 @@ export default defineConfig({
   entry: manuscript,
   entryContext: ".",
   toc: true,
+  tocTitle: "目次",
   workspaceDir: ".vivliostyle",
   // entryContext がリポジトリルートのため、デフォルトでは画像拡張子を持つファイルが
   // リポジトリ全体からビルド成果物にコピーされてしまう。docs/ 配下は原稿ではなく

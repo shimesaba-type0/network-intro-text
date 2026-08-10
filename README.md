@@ -99,7 +99,7 @@ GitHub Pagesのデプロイソースは **「Deploy from a branch」**（`gh-pag
 
 本文・図版などのコンテンツは CC BY-NC-ND 4.0 の下で提供されます。3階層で表記しています。
 
-1. **Web共通フッター**（全ページ）: `theme/style.css` の `@page` ルールで、
+1. **Web/PDF共通フッター**（全ページ）: `theme/style.css` の `@page` ルールで、
    `© Takashi Kouno ・ CC BY-NC-ND 4.0` の1行 + legalcodeへの参照をWeb/PDF共通のページフッターとして表示
 2. **専用ページ**（Web/PDF共通）: [`manuscript/90-license.md`](./manuscript/90-license.md) に
    条件のかみ砕いた説明を掲載

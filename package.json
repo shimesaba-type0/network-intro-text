@@ -2,6 +2,7 @@
   "name": "network-intro-text",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "ネットワーク入門テキスト（Web/PDF）- Vivliostyle製 Single Source Multi Output",
   "scripts": {
     "build": "npm run build:webpub && npm run build:pdf",
