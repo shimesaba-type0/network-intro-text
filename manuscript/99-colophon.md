@@ -11,7 +11,7 @@ status: draft
 
 **書名**　ネットワーク入門テキスト（仮）
 
-**著者**　Takashi Kouno
+**著者**　河野 崇（Takashi Kouno）
 
 **発行**　（自費出版 / Web公開）
 
