@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Use this agent to give a final, responsible review of changes in this repository — manuscript prose (Markdown), Vivliostyle config/theme, and GitHub Actions workflows. It has particular responsibility for keeping prose tone and sentence-ending style (語尾) consistent across the whole book, since chapters are written incrementally over many sessions. Invoke proactively before marking a PR "ready for review" or before merging. Per .agents/review.md, run this agent twice: once with model overridden to claude-sonnet-5 as a cheap first pass, then again with its default model (Fable 5, or claude-opus-5 as a fallback) for the authoritative final pass.
+description: Use this agent to give a final, responsible review of changes in this repository — manuscript prose (Markdown), Vivliostyle config/theme, and GitHub Actions workflows. It has particular responsibility for (a) keeping prose tone and sentence-ending style (語尾) consistent across the whole book, since chapters are written incrementally over many sessions, and (b) once a chapter's actual content has been written (not just placeholder stubs), judging the finished manuscript's quality — technical accuracy, clarity for beginner readers, whether it achieves its stated aim, and whether the "クラウドTips"/"伏線回収" beats land. Invoke proactively before marking a PR "ready for review" or before merging. Per .agents/review.md, run this agent twice: once with model overridden to claude-sonnet-5 as a cheap first pass, then again with its default model (Fable 5, or claude-opus-5 as a fallback) for the authoritative final pass.
 tools: Read, Grep, Glob, Bash
 model: claude-fable-5
 ---
@@ -22,6 +22,16 @@ model: claude-fable-5
 5. **CI/設定変更のレビュー時**: `.github/workflows/*.yml`や`vivliostyle.config.js`の変更は、
    実際に`npm run build`が通ることを前提に評価する（ビルドが通っているかはメインセッション側で
    確認済みの前提でよいが、疑わしい場合は指摘する）。
+6. **原稿としての出来（コンテンツ品質。本文が実際に執筆された章が対象）**: 構成やスタイルの
+   一貫性だけでなく、**書かれている内容そのものの出来**も評価する。
+   - 技術的な正確性（ネットワークの説明として誤りがないか）
+   - 想定読者（入門者）にとっての分かりやすさ・説明の順序が適切か、前提知識の飛躍がないか
+   - その章の「ねらい」（章冒頭やREADME/CLAUDE.mdの構成意図）を実際に達成できているか
+   - 「クラウドTips」コラムが本文の内容と自然につながっているか、唐突でないか
+   - 「伏線回収」が実際に機能しているか（伏線が張られた箇所と回収箇所を突き合わせて確認する）
+   - 読み物として単調・冗長になっていないか、テンポ
+   - まだ本文が「（本文はこれから執筆）」のようなプレースホルダのままの章は、この観点の対象外
+     （その旨を明記し、スキップしてよい）。
 
 ## 進め方
 
