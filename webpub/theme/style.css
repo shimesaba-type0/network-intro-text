@@ -4,6 +4,28 @@
  * ページサイズ・余白はお好みに応じて変更可（例: A5 -> B5）。
  */
 
+/*
+ * コードブロック用フォント: HackGen Console NF（https://github.com/yuru7/HackGen）
+ * SIL Open Font License 1.1（theme/fonts/LICENSE-HackGen.txt に全文同梱）。
+ * CIやViewerの環境にインストールされているかに依存させたくない（Issue #5と同じ理由）ため、
+ * 名前指定だけに頼らずWOFF2ファイルを同梱し、@font-faceで確実に読み込む。
+ */
+@font-face {
+  font-family: "HackGen Console NF";
+  src: url("./fonts/HackGenConsoleNF-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HackGen Console NF";
+  src: url("./fonts/HackGenConsoleNF-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* "Noto Serif/Sans JP" はOS内蔵やGoogle Fontsでの配布名、"Noto Serif/Sans CJK JP" は
      Linux(Debian/Ubuntu)の fonts-noto-cjk パッケージが実際にインストールする内部名。
@@ -12,6 +34,7 @@
      ここでは両方の名前を候補に入れて確実にヒットさせる（Issue #5）。 */
   --font-serif: "Noto Serif JP", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-sans: "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --font-mono: "HackGen Console NF", "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
   --color-text: #1a1a1a;
   --color-muted: #666666;
   --color-accent: #1f6f5c;
@@ -38,14 +61,18 @@ h1 {
 }
 
 pre, code {
-  font-family: "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
 }
 
 pre {
   background: #f5f5f5;
   padding: 0.8em 1em;
-  overflow-x: auto;
   border-radius: 4px;
+  /* overflow-x: auto はPDF/印刷では効かず、はみ出た行が見切れて消えるだけになる
+     （Web版のスクロールと違い、紙面には「隠れた続き」という概念が無いため）。
+     ページ幅に収まらない行は折り返して表示する。 */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 blockquote {
