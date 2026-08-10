@@ -33,6 +33,7 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
 │   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
+├── theme/fonts/           コードブロック用フォント（HackGen Console NF、同梱理由は下記参照）
 ├── assets/
 │   ├── mermaid/           Mermaid図のソース（*.mmd）
 │   ├── drawio/            draw.io図のソース（*.drawio）
@@ -109,6 +110,14 @@ GitHub Pagesのデプロイソースは **「Deploy from a branch」**（`gh-pag
 
 リポジトリ全体のライセンス全文（CC BY-NC-ND 4.0の公式条文＋日本語でのかみ砕いた説明）は
 [`LICENSE.md`](./LICENSE.md) を参照してください。
+
+## フォントについて
+
+コードブロック（`pre`/`code`）には [HackGen Console NF](https://github.com/yuru7/HackGen) を使用しています。
+CI・Viewerの環境にインストールされているかに依存しないよう（CJKフォントの件と同じ理由。上記Issue #5参照）、
+WOFF2ファイルを`theme/fonts/`に同梱し`@font-face`で読み込んでいます。SIL Open Font License 1.1で提供されており、
+ライセンス全文は[`theme/fonts/LICENSE-HackGen.txt`](./theme/fonts/LICENSE-HackGen.txt)に同梱しています。
+本文（見出し・地の文）のフォントはOS/Viewer側のNoto Sans/Serif JP等に委ねており、同梱していません。
 
 ## GitHub側で手動設定が必要な項目（Claude Codeでは実行不可）
 

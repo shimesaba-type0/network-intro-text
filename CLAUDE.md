@@ -36,6 +36,8 @@ npm run mermaid:build     # assets/mermaid/*.mmd を assets/images/*.svg に一�
   HTMLコメントブロックを確実に無視できず、本文として漏れ出る不具合が確認されている
   （Issue #5）。かわりに [`docs/chapter-notes.md`](./docs/chapter-notes.md) に集約する。
 - `theme/style.css`: Web/PDF共通のページスタイル。ライセンスの1行フッターもここ（`@page`ルール）。
+- `theme/fonts/`: コードブロック用フォント（HackGen Console NF、OFL）をWOFF2で同梱。CJKフォントと同じ理由
+  （Issue #5）で、環境依存の名前指定だけに頼らず`@font-face`で確実に読み込む。
 - `assets/mermaid/` `assets/drawio/` `assets/images/`: 図版ソースとレンダリング済みSVG。
   変換手順は[`docs/mermaid-to-svg.md`](./docs/mermaid-to-svg.md)、
   [`docs/drawio-to-svg.md`](./docs/drawio-to-svg.md)。
