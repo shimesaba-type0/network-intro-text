@@ -29,7 +29,7 @@ const manuscript = [
 
 export default defineConfig({
   title: "ネットワーク入門テキスト（仮）",
-  author: "Takashi Kono",
+  author: "Takashi Kouno",
   language: "ja",
   size: "A5",
   theme: "./theme/style.css",

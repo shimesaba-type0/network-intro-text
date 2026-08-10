@@ -11,7 +11,7 @@ status: draft
 
 **書名**　ネットワーク入門テキスト（仮）
 
-**著者**　Takashi Kono
+**著者**　Takashi Kouno
 
 **発行**　（自費出版 / Web公開）
 
@@ -22,7 +22,7 @@ status: draft
 本書（本文・図版等のコンテンツ）は、
 Creative Commons 表示 - 非営利 - 改変禁止 4.0 国際（CC BY-NC-ND 4.0）ライセンスの下で提供されています。
 
-- 著作者名の表示（Takashi Kono）とライセンス表示を行うこと
+- 著作者名の表示（Takashi Kouno）とライセンス表示を行うこと
 - 非営利目的での利用に限ること
 - 原文を改変せず、そのままの形で共有すること
 
@@ -31,6 +31,6 @@ Creative Commons 表示 - 非営利 - 改変禁止 4.0 国際（CC BY-NC-ND 4.0�
 （[https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)）
 を参照してください。
 
-© Takashi Kono
+© Takashi Kouno
 
 </div>
