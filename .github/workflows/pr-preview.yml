@@ -30,7 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          # package-lock.json をコミットしていないため cache: npm は指定しない
+          # （setup-nodeのnpmキャッシュはロックファイルの存在を必須とし、無いとジョブが失敗する）
 
       - name: Install dependencies
         if: github.event.action != 'closed'
