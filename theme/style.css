@@ -38,6 +38,25 @@
   --color-text: #1a1a1a;
   --color-muted: #666666;
   --color-accent: #1f6f5c;
+  --color-navy: #233a5e;
+
+  /* 本書全体で繰り返し使う5種類の「箱」の配色（Issue #8「この本の読み方」参照）。
+     色と形自体が「これは何を書いてある部分か」を示すので、本文中で
+     「【Tips】」等のラベル文字を都度繰り返す必要はない。 */
+  --color-lede-bg: #fff6d6;
+  --color-lede-border: #e8cf7a;
+  --color-slide-bg: #eef1f6;
+  --color-slide-border: #c7d1e0;
+  --color-amber-bg: #fbf1e2;
+  --color-amber-border: #e0b374;
+  --color-teal-bg: #e9f4f2;
+  --color-teal-border: #9bccc5;
+}
+
+/* 段落の1行目を1文字分字下げする、日本語の書籍で一般的な組み方。 */
+p {
+  text-indent: 1em;
+  margin: 0 0 1em;
 }
 
 html {
@@ -104,6 +123,85 @@ table {
 th, td {
   border: 1px solid #ccc;
   padding: 0.4em 0.6em;
+}
+
+/*
+ * 本書全体で使う5種類の「箱」（Issue #8「この本の読み方」参照）。
+ * 原稿側では次のように、素のHTML divとして書く（VFMは行頭からの生HTMLブロックを
+ * 正しく通す。ただしHTMLコメントは通らない不具合があるので注意。Issue #5）。
+ *
+ * box-slide内にMarkdown（見出し・リスト）を書く場合、開始・終了divタグの直後/直前に
+ * 必ず空行を入れること。空行がないとVFMがdiv内部をMarkdownとして処理せず、
+ * `#### 見出し` 等が生テキストのまま出力される（実測で確認済み）。
+ *
+ *   <div class="box-lede">一言要約の本文</div>
+ *
+ *   <div class="box-slide">
+ *
+ *   #### なぜ階層化するか
+ *
+ *   - 役割ごとに問題を切り分けられる
+ *   - どこが壊れているか特定しやすい
+ *
+ *   </div>
+ *
+ *   <div class="box-callout jitsumu">実務メモの本文</div>
+ *   <div class="box-callout cloud">クラウドではの本文</div>
+ *
+ * 「詳細」は特別なクラスを持たない、通常の段落として続ける。
+ */
+.box-lede {
+  background: var(--color-lede-bg);
+  border: 1px solid var(--color-lede-border);
+  border-radius: 10px;
+  padding: 0.8em 1.1em;
+  font-weight: 600;
+}
+
+.box-lede p {
+  text-indent: 0;
+  margin: 0;
+}
+
+.box-slide {
+  background: var(--color-slide-bg);
+  border: 1px solid var(--color-slide-border);
+  border-radius: 2px;
+  padding: 1em 1.2em;
+}
+
+.box-slide h4 {
+  font-size: 1em;
+  margin: 0 0 0.5em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid var(--color-navy);
+}
+
+.box-slide ul {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.box-callout {
+  border-left: 4px solid;
+  padding: 0.8em 1.1em;
+}
+
+.box-callout p {
+  text-indent: 0;
+  margin: 0;
+}
+
+.box-callout.jitsumu {
+  background: var(--color-amber-bg);
+  border-color: var(--color-amber-border);
+}
+
+.box-callout.cloud {
+  background: var(--color-teal-bg);
+  border-color: var(--color-teal-border);
 }
 
 /* 奥付（99-colophon.md）専用のレイアウト */

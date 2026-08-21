@@ -1,13 +1,13 @@
 # network-intro-text
 
-ネットワーク入門テキスト（仮）― Markdown原稿1本から Web版 と PDF版 を同時生成する
+ネットワーク基礎再入門 ― Markdown原稿1本から Web版 と PDF版 を同時生成する
 Single Source Multi Output 方式の技術書プロジェクトです。
 
 ## プロジェクト概要
 
 - **原稿フォーマット**: Markdown（[Vivliostyle Flavored Markdown](https://docs.vivliostyle.org/)）
 - **レンダラー**: [Vivliostyle CLI](https://vivliostyle.org/) — 1つの原稿からWeb(HTML/WebPub)とPDFを同時生成する
-- **構成**: 序章 + 第1〜12章（幕間2箇所を含む）+ 終章
+- **構成**: 序章 + 第1〜12章 + 終章
 - **図版**: 時系列・関係性を表す図はMermaid、配置に意味を持たせたい図はdraw.ioで作成し、
   いずれも事前にSVGへレンダリングしてから原稿に埋め込む（[docs/mermaid-to-svg.md](./docs/mermaid-to-svg.md)、
   [docs/drawio-to-svg.md](./docs/drawio-to-svg.md)を参照）
@@ -20,16 +20,17 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 ## 想定読者
 
 ネットワークの基礎を、体系立てて・実務やクラウド活用にもつながる形で学びたい入門者を想定しています。
-各章末には、内容に関連するクラウドサービスの豆知識コラム（「クラウドTips」）を挟む構成になっています。
+内容に応じて、関連するクラウドサービスの豆知識（「クラウドでは」ボックス）や実務メモを挟む構成になっています。
 
 ## ディレクトリ構成
 
 ```
 .
 ├── manuscript/            原稿（Markdown、章ごとに1ファイル）
-│   ├── 00-序章.md
-│   ├── 01-第01章.md 〜 14-第12章.md（幕間2箇所を含む）
-│   ├── 15-終章.md
+│   ├── 00-はじめに.md
+│   ├── 01-序章.md
+│   ├── 02-第01章.md 〜 13-第12章.md
+│   ├── 14-終章.md
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
 │   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
@@ -45,8 +46,7 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 └── .github/workflows/     PRプレビュー用・本番デプロイ用のCIワークフロー
 ```
 
-原稿ファイルの連番は、そのまま本の掲載順を表します。幕間の挿入位置は暫定
-（`vivliostyle.config.js`のコメントを参照）で、確定済みの目次に合わせて調整してください。
+原稿ファイルの連番は、そのまま本の掲載順を表します。
 
 ## ビルド方法
 

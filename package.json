@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "ネットワーク入門テキスト（Web/PDF）- Vivliostyle製 Single Source Multi Output",
+  "description": "ネットワーク基礎再入門（Web/PDF）- Vivliostyle製 Single Source Multi Output",
   "scripts": {
     "build": "npm run build:webpub && npm run build:pdf",
     "build:webpub": "vivliostyle build --output dist/webpub",
