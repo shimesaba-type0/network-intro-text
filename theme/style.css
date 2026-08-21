@@ -319,8 +319,27 @@ body:has(.cover) {
   }
 }
 
-/* 本編が始まる前の最初のページ（表紙相当）ではrunning headerを出さない */
+/* 本の最初のページ（表紙）ではrunning headerを出さない。
+   表紙は`@page cover`側でも同じ指定をしており、ここは念のための二重の保険。 */
 @page :first {
+  @top-center {
+    content: none;
+  }
+}
+
+/*
+ * 目次ページ（Vivliostyle CLIが`{rel: "contents"}`から自動生成する index.html）にも
+ * running headerを出さない。目次自身がh1で書名を表示するため、running headerと二重表示に
+ * なってしまう（表紙をpage 1にする前は目次がpage 1で`@page :first`により隠れていたが、
+ * 表紙の追加でずれたため、目次を独自のnamed pageとして明示的に扱う。実測で確認）。
+ * 目次ページの本文（body > h1 + nav#toc）は原稿のMarkdownではなくVivliostyleが生成するため、
+ * `page:`プロパティを直接書き込めない。かわりに`:has()`でその構造を検出して割り当てる。
+ */
+body:has(> nav#toc) {
+  page: contents;
+}
+
+@page contents {
   @top-center {
     content: none;
   }
