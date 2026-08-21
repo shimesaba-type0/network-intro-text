@@ -130,18 +130,25 @@ th, td {
  * 原稿側では次のように、素のHTML divとして書く（VFMは行頭からの生HTMLブロックを
  * 正しく通す。ただしHTMLコメントは通らない不具合があるので注意。Issue #5）。
  *
+ * box-slide内にMarkdown（見出し・リスト）を書く場合、開始・終了divタグの直後/直前に
+ * 必ず空行を入れること。空行がないとVFMがdiv内部をMarkdownとして処理せず、
+ * `#### 見出し` 等が生テキストのまま出力される（実測で確認済み）。
+ *
  *   <div class="box-lede">一言要約の本文</div>
  *
  *   <div class="box-slide">
+ *
  *   #### なぜ階層化するか
+ *
  *   - 役割ごとに問題を切り分けられる
  *   - どこが壊れているか特定しやすい
+ *
  *   </div>
  *
  *   <div class="box-callout jitsumu">実務メモの本文</div>
  *   <div class="box-callout cloud">クラウドではの本文</div>
  *
- * 「詳細」（区切り線の下の本文）は特別なクラスを持たない、通常の段落。
+ * 「詳細」は特別なクラスを持たない、通常の段落として続ける。
  */
 .box-lede {
   background: var(--color-lede-bg);
