@@ -256,7 +256,7 @@ th, td {
   text-indent: 0;
 }
 
-body:has(.cover) {
+body:has(> .cover) {
   margin: 0;
 }
 
@@ -295,7 +295,8 @@ body:has(.cover) {
   size: A5;
   margin: 20mm 16mm 24mm 16mm;
 
-  /* 表示 - 非営利 - 改変禁止 4.0 の1行表記（年なし）+ legalcodeへの参照。全ページ共通フッター。 */
+  /* 表示 - 非営利 - 改変禁止 4.0 の1行表記（年なし）+ legalcodeへの参照。
+     表紙（@page cover側で非表示）を除く全ページ共通フッター。 */
   @bottom-center {
     content: "© Takashi Kouno ・ CC BY-NC-ND 4.0 ・ creativecommons.org/licenses/by-nc-nd/4.0/legalcode";
     font-family: var(--font-sans);
