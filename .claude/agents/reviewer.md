@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Use this agent to give a final, responsible review of changes in this repository — manuscript prose (Markdown), Vivliostyle config/theme, and GitHub Actions workflows. It has particular responsibility for (a) keeping prose tone and sentence-ending style (語尾) consistent across the whole book, since chapters are written incrementally over many sessions, and (b) once a chapter's actual content has been written (not just placeholder stubs), judging the finished manuscript's quality — technical accuracy, clarity for beginner readers, whether it achieves its stated aim, and whether the "クラウドTips"/"伏線回収" beats land. Invoke proactively before marking a PR "ready for review" or before merging. Per .agents/review.md, run this agent twice: once with model overridden to claude-sonnet-5 as a cheap first pass, then again with its default model (Fable 5, or claude-opus-5 as a fallback) for the authoritative final pass.
+description: Use this agent to give a final, responsible review of changes in this repository — manuscript prose (Markdown), Vivliostyle config/theme, and GitHub Actions workflows. It has particular responsibility for (a) keeping prose tone and sentence-ending style (語尾) consistent across the whole book, since chapters are written incrementally over many sessions, and (b) once a chapter's actual content has been written (not just placeholder stubs), judging the finished manuscript's quality — technical accuracy, clarity for beginner readers, whether it achieves its stated aim, and whether the "クラウドでは"/"伏線回収" beats land. Invoke proactively before marking a PR "ready for review" or before merging. Per .agents/review.md, run this agent twice: once with model overridden to claude-sonnet-5 as a cheap first pass, then again with its default model (Fable 5, or claude-opus-5 as a fallback) for the authoritative final pass.
 tools: Read, Grep, Glob, Bash
 model: claude-fable-5
 ---
@@ -17,7 +17,7 @@ model: claude-fable-5
 3. **語尾・文体の統一（最重要・特にFable 5パスで重点的に）**: 章ごとに執筆時期がずれると、
    「です・ます調」と「である調」が混在したり、同じ概念の呼び方が章によって揺れたりしやすい。
    複数の原稿ファイルを横断して比較し、リポジトリ全体で文体が統一されているかを確認する。
-4. **構成メモの扱い**: 執筆用の下書きメモ（「クラウドTips」「伏線回収」等）は
+4. **構成メモの扱い**: 執筆用の下書きメモ（「クラウドでは」「実務メモ」「伏線回収」等）は
    `docs/chapter-notes.md`に集約する運用であり、`manuscript/*.md`内に**HTMLコメントとして
    埋め込まれていないこと**を確認する（VFMは複数行のHTMLコメントブロックを確実に無視できず、
    本文として漏れ出る不具合が過去にあった。Issue #5）。
@@ -29,7 +29,7 @@ model: claude-fable-5
    - 技術的な正確性（ネットワークの説明として誤りがないか）
    - 想定読者（入門者）にとっての分かりやすさ・説明の順序が適切か、前提知識の飛躍がないか
    - その章の「ねらい」（章冒頭やREADME/CLAUDE.mdの構成意図）を実際に達成できているか
-   - 「クラウドTips」コラムが本文の内容と自然につながっているか、唐突でないか
+   - 「クラウドでは」ボックスが本文の内容と自然につながっているか、唐突でないか
    - 「伏線回収」が実際に機能しているか（伏線が張られた箇所と回収箇所を突き合わせて確認する）
    - 読み物として単調・冗長になっていないか、テンポ
    - まだ本文が「（本文はこれから執筆）」のようなプレースホルダのままの章は、この観点の対象外
