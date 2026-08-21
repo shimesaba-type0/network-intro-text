@@ -4,7 +4,7 @@
 
 ## プロジェクト概要
 
-「ネットワーク入門テキスト（仮）」— Markdown原稿1本からWeb版とPDF版を同時生成する
+「ネットワーク基礎再入門」— Markdown原稿1本からWeb版とPDF版を同時生成する
 Single Source Multi Output方式の技術書。詳細は [`README.md`](./README.md) を参照。
 ビルドパイプライン・図版方針・ライセンス方針は
 [ADR-001](./docs/adr/ADR-001-web-pdf-publishing-pipeline.md) に準拠している。
