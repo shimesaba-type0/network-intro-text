@@ -27,9 +27,10 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 ```
 .
 ├── manuscript/            原稿（Markdown、章ごとに1ファイル）
-│   ├── 00-序章.md
-│   ├── 01-第01章.md 〜 12-第12章.md
-│   ├── 13-終章.md
+│   ├── 00-はじめに.md
+│   ├── 01-序章.md
+│   ├── 02-第01章.md 〜 13-第12章.md
+│   ├── 14-終章.md
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
 │   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
