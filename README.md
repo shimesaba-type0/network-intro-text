@@ -7,7 +7,7 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 
 - **原稿フォーマット**: Markdown（[Vivliostyle Flavored Markdown](https://docs.vivliostyle.org/)）
 - **レンダラー**: [Vivliostyle CLI](https://vivliostyle.org/) — 1つの原稿からWeb(HTML/WebPub)とPDFを同時生成する
-- **構成**: 序章 + 第1〜12章 + 終章
+- **構成**: 表紙 + はじめに + 序章 + 第1〜12章 + 終章
 - **図版**: 時系列・関係性を表す図はMermaid、配置に意味を持たせたい図はdraw.ioで作成し、
   いずれも事前にSVGへレンダリングしてから原稿に埋め込む（[docs/mermaid-to-svg.md](./docs/mermaid-to-svg.md)、
   [docs/drawio-to-svg.md](./docs/drawio-to-svg.md)を参照）
@@ -27,6 +27,7 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 ```
 .
 ├── manuscript/            原稿（Markdown、章ごとに1ファイル）
+│   ├── 表紙.md            表紙（連番なし。掲載順の先頭に固定で差し込む。Issue #10）
 │   ├── 00-はじめに.md
 │   ├── 01-序章.md
 │   ├── 02-第01章.md 〜 13-第12章.md
@@ -46,7 +47,8 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 └── .github/workflows/     PRプレビュー用・本番デプロイ用のCIワークフロー
 ```
 
-原稿ファイルの連番は、そのまま本の掲載順を表します。
+原稿ファイルの連番は、そのまま本の掲載順を表します（表紙.mdのみ例外で、連番を持たず
+`vivliostyle.config.js`の設定で掲載順の先頭に固定しています）。
 
 ## ビルド方法
 

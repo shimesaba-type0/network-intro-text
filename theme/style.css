@@ -204,6 +204,77 @@ th, td {
   border-color: var(--color-teal-border);
 }
 
+/*
+ * 表紙（manuscript/表紙.md、Issue #10）専用のレイアウト。
+ * フルブリード（余白なし）の1ページにするため、`page: cover` で本文用の@pageとは別の
+ * named page（下記 `@page cover`）に割り当て、そちらでmargin:0・ヘッダーフッター非表示に
+ * している。ページ寸法はA5固定（本文の@pageと同じ）なので、.coverの幅・高さも
+ * 148mm/210mmで直接指定し、パーセント高さの計算に頼らない。
+ */
+.cover {
+  page: cover;
+  box-sizing: border-box;
+  width: 148mm;
+  height: 210mm;
+  margin: 0;
+  padding: 20mm 14mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0f1b30 0%, #16233d 55%, #1c2c4a 100%);
+  color: #ffffff;
+}
+
+.cover-main {
+  margin-top: 30mm;
+}
+
+.cover-title {
+  font-family: var(--font-sans);
+  font-size: 26pt;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0 0 10mm;
+  text-indent: 0;
+}
+
+.cover-rule {
+  width: 70%;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--color-amber-border);
+}
+
+.cover-imprint {
+  margin: auto 0 0;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: #cfd8e8;
+  text-indent: 0;
+}
+
+body:has(> .cover) {
+  margin: 0;
+}
+
+@page cover {
+  size: A5;
+  margin: 0;
+
+  @top-center {
+    content: none;
+  }
+  @bottom-center {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+
 /* 奥付（99-colophon.md）専用のレイアウト */
 .colophon {
   font-size: 0.9em;
@@ -224,7 +295,8 @@ th, td {
   size: A5;
   margin: 20mm 16mm 24mm 16mm;
 
-  /* 表示 - 非営利 - 改変禁止 4.0 の1行表記（年なし）+ legalcodeへの参照。全ページ共通フッター。 */
+  /* 表示 - 非営利 - 改変禁止 4.0 の1行表記（年なし）+ legalcodeへの参照。
+     表紙（@page cover側で非表示）を除く全ページ共通フッター。 */
   @bottom-center {
     content: "© Takashi Kouno ・ CC BY-NC-ND 4.0 ・ creativecommons.org/licenses/by-nc-nd/4.0/legalcode";
     font-family: var(--font-sans);
@@ -248,8 +320,27 @@ th, td {
   }
 }
 
-/* 本編が始まる前の最初のページ（表紙相当）ではrunning headerを出さない */
+/* 本の最初のページ（表紙）ではrunning headerを出さない。
+   表紙は`@page cover`側でも同じ指定をしており、ここは念のための二重の保険。 */
 @page :first {
+  @top-center {
+    content: none;
+  }
+}
+
+/*
+ * 目次ページ（Vivliostyle CLIが`{rel: "contents"}`から自動生成する index.html）にも
+ * running headerを出さない。目次自身がh1で書名を表示するため、running headerと二重表示に
+ * なってしまう（表紙をpage 1にする前は目次がpage 1で`@page :first`により隠れていたが、
+ * 表紙の追加でずれたため、目次を独自のnamed pageとして明示的に扱う。実測で確認）。
+ * 目次ページの本文（body > h1 + nav#toc）は原稿のMarkdownではなくVivliostyleが生成するため、
+ * `page:`プロパティを直接書き込めない。かわりに`:has()`でその構造を検出して割り当てる。
+ */
+body:has(> nav#toc) {
+  page: contents;
+}
+
+@page contents {
   @top-center {
     content: none;
   }

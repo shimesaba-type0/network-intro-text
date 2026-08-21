@@ -29,13 +29,27 @@ const manuscript = [
   "manuscript/99-colophon.md",
 ];
 
+// 表紙（Issue #10, manuscript/表紙.md）は、掲載順の先頭に固定で差し込む（manuscript配列側の
+// 連番は変更しない）。Vivliostyle CLIの `rel: "cover"` エントリ（設定上は`imageSrc`）は画像1枚を
+// ラップする専用機能で、独自CSSのHTMLコンテンツを差し込めないため、ここでは使わず、
+// 通常の原稿エントリとして先頭に置き、theme/style.cssの`.cover` / `@page cover`で
+// フルブリードのレイアウトを実現している。
+// トレードオフ: `rel: "cover"`は自動生成される目次から除外される仕組みになっているが、
+// 通常の原稿エントリ扱いにしているため表紙も目次の1項目として一覧に出る
+// （多くの電子書籍でも表紙を目次先頭に出す慣習があるため、これは許容している）。
+// `{ rel: "contents" }` を表紙の直後に明示的に置いているのは、`toc: true` のときVivliostyle
+// CLIが自動生成する目次エントリを配列の先頭に無条件でunshiftしてしまい、表紙より前に
+// 目次が来てしまう（実測で確認）挙動を避けるため。自分でrel:"contents"エントリを
+// 用意しておくと、その自動unshiftは行われず、この位置がそのまま採用される。
+const entry = ["manuscript/表紙.md", { rel: "contents" }, ...manuscript];
+
 export default defineConfig({
   title: "ネットワーク基礎再入門",
   author: "Takashi Kouno",
   language: "ja",
   size: "A5",
   theme: "./theme/style.css",
-  entry: manuscript,
+  entry,
   entryContext: ".",
   toc: true,
   tocTitle: "目次",
