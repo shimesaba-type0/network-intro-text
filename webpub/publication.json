@@ -8,8 +8,12 @@
   "name": "ネットワーク基礎再入門",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-08-21T14:13:03.537Z",
+  "dateModified": "2026-08-21T15:29:52.964Z",
   "readingOrder": [
+    {
+      "url": "manuscript/%E8%A1%A8%E7%B4%99.html",
+      "name": "表紙"
+    },
     {
       "url": "index.html",
       "name": "目次",
