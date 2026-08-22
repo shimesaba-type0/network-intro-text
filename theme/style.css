@@ -361,3 +361,20 @@ body:has(> nav#toc) {
     content: none;
   }
 }
+
+/*
+ * 序章・第1〜12章・終章は、見開きにしたとき必ず左ページ（偶数ページ）から始まるようにする。
+ * CSS Fragmentation（break-before: left）は、直前のページが既に左ページなら自動で
+ * 右ページを1枚空白のまま挿入してから、次の左ページに送る。
+ * `manuscript/*.md`側では、対象ファイルの本文全体を`<div class="chapter">...</div>`で
+ * 包むことでこのクラスを付与している。
+ *
+ * この自動挿入される空白ページを罫線入りのメモページとして装飾する`@page :blank`を
+ * 試したが、Vivliostyle Core（@vivliostyle/core/lib/vivliostyle.js）は自動挿入した
+ * 空白ページに対してbackground・margin box content（@top-right等）のいずれも描画しない
+ * （実測で確認: size/background-colorを明示的に変えても反映されない）。そのため現状は
+ * 素の空白ページのまま（一般的な書籍の「無地の予備ページ」と同じ扱い）にしている。
+ */
+.chapter {
+  break-before: left;
+}
