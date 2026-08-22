@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- ダムハブ/トークンリング図（00-dumb-hub-topology.svg, 00-token-ring-topology.svg）と
+         同一のアイコン定義。表示上のPCの大きさを図ごとに揃えるため、幾何は完全に一致させている。 -->
+    <g id="pc">
+      <rect x="-30" y="-23" width="60" height="40" rx="4" fill="#ffffff" stroke="#233a5e" stroke-width="3"/>
+      <rect x="-24" y="-17" width="48" height="28" fill="#eef1f6"/>
+      <rect x="-5" y="17" width="10" height="9" fill="#233a5e"/>
+      <rect x="-17" y="26" width="34" height="5" rx="2" fill="#233a5e"/>
+    </g>
+  </defs>
+  <use href="#pc" x="100" y="90"/>
+</svg>
