@@ -25,8 +25,9 @@
   <use href="#arrow" transform="translate(92.5,235) rotate(-108)"/>
   <use href="#arrow" transform="translate(133.5,108.5) rotate(-36)"/>
 
-  <!-- 「今、順番が回ってきている」ことを示すトークン -->
-  <g transform="translate(266.5,108.5)">
+  <!-- 「今、順番が回ってきている」ことを示すトークン。矢印を隠さないよう、
+       リングの外側にずらして配置している。 -->
+  <g transform="translate(285,83)">
     <circle r="14" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="3"/>
     <text x="0" y="34" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1f6f5c">TOKEN</text>
   </g>
