@@ -34,6 +34,9 @@ npm run mermaid:build     # assets/mermaid/*.mmd を assets/images/*.svg に一�
   コメントに詳細）。`表紙.md`・`裏表紙.md`のみ例外で連番を持たず、`vivliostyle.config.js`の
   `entry`配列で掲載順の先頭・末尾にそれぞれ固定で差し込んでいる（Issue #10）。
   表紙のバージョン表記（`.cover-version`）は`表紙.md`内に直書きしており、単一の情報源になっている。
+  序章・第1〜12章・終章は、本文全体を`<div class="chapter">...</div>`で包んでいる
+  （見開きで必ず左ページから始まるようにする`.chapter { break-before: left }`のため。
+  決定ログ#11）。この14ファイルを編集する際は、この開始・終了divを崩さないこと。
   **執筆用の下書きメモ（「クラウドでは」
   「実務メモ」「伏線回収」構成メモ等）は
   `manuscript/*.md`内にHTMLコメントとして書かない**こと。VFMは行頭から始まる複数行の
