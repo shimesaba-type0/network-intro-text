@@ -41,7 +41,15 @@ const manuscript = [
 // CLIが自動生成する目次エントリを配列の先頭に無条件でunshiftしてしまい、表紙より前に
 // 目次が来てしまう（実測で確認）挙動を避けるため。自分でrel:"contents"エントリを
 // 用意しておくと、その自動unshiftは行われず、この位置がそのまま採用される。
-const entry = ["manuscript/表紙.md", { rel: "contents" }, ...manuscript];
+// 裏表紙（manuscript/裏表紙.md）も表紙と同様、連番を持たず掲載順の末尾に固定で差し込む。
+// 表紙と同じく通常の原稿エントリ扱いのため、目次の最後の項目としても一覧に出る
+// （表紙が目次の先頭に出るのと対称のトレードオフ。上記表紙のコメントを参照）。
+const entry = [
+  "manuscript/表紙.md",
+  { rel: "contents" },
+  ...manuscript,
+  "manuscript/裏表紙.md",
+];
 
 export default defineConfig({
   title: "ネットワーク基礎再入門",

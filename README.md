@@ -33,7 +33,8 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 │   ├── 02-第01章.md 〜 13-第12章.md
 │   ├── 14-終章.md
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
-│   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
+│   ├── 99-colophon.md     奥付（Web/PDF共通）
+│   └── 裏表紙.md          裏表紙（連番なし。掲載順の末尾に固定で差し込む）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
 ├── theme/fonts/           コードブロック用フォント（HackGen Console NF、同梱理由は下記参照）
 ├── assets/
@@ -47,8 +48,8 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 └── .github/workflows/     PRプレビュー用・本番デプロイ用のCIワークフロー
 ```
 
-原稿ファイルの連番は、そのまま本の掲載順を表します（表紙.mdのみ例外で、連番を持たず
-`vivliostyle.config.js`の設定で掲載順の先頭に固定しています）。
+原稿ファイルの連番は、そのまま本の掲載順を表します（表紙.md・裏表紙.mdのみ例外で、連番を持たず
+`vivliostyle.config.js`の設定で掲載順の先頭・末尾にそれぞれ固定しています）。
 
 ## ビルド方法
 
@@ -102,11 +103,11 @@ GitHub Pagesのデプロイソースは **「Deploy from a branch」**（`gh-pag
 
 本文・図版などのコンテンツは CC BY-NC-ND 4.0 の下で提供されます。3階層で表記しています。
 
-1. **Web/PDF共通フッター**（全ページ）: `theme/style.css` の `@page` ルールで、
+1. **Web/PDF共通フッター**（表紙・裏表紙を除く全ページ）: `theme/style.css` の `@page` ルールで、
    `© Takashi Kouno ・ CC BY-NC-ND 4.0` の1行 + legalcodeへの参照をWeb/PDF共通のページフッターとして表示
 2. **専用ページ**（Web/PDF共通）: [`manuscript/90-license.md`](./manuscript/90-license.md) に
    条件のかみ砕いた説明を掲載
-3. **奥付**（Web/PDF共通、末尾ページ）: [`manuscript/99-colophon.md`](./manuscript/99-colophon.md)。
+3. **奥付**（Web/PDF共通）: [`manuscript/99-colophon.md`](./manuscript/99-colophon.md)。
    `vivliostyle.config.js`の`manuscript`配列はWeb/PDF共通の単一エントリなので、`90-license.md`と
    同様にWeb版にも含まれる（PDF限定のページではない）
 
