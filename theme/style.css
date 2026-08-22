@@ -227,8 +227,8 @@ th, td {
   color: #ffffff;
 }
 
-/* 表紙右上のバージョン表記（例: "v0.1"）。バージョンの値はmanuscript/表紙.md側に直書きする。
-   全章を通しで使える出来栄えになるまでは1.0未満のマイナーバージョンを刻んでいく運用。 */
+/* 表紙右上のバージョン表記（例: "v0.1"）。バージョンの値はmanuscript/表紙.md側に直書きする
+   （単一の情報源）。運用方針はdocs/chapter-notes.mdの決定ログ#10を参照。 */
 .cover-version {
   position: absolute;
   top: 12mm;
