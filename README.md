@@ -33,7 +33,8 @@ Single Source Multi Output 方式の技術書プロジェクトです。
 │   ├── 02-第01章.md 〜 13-第12章.md
 │   ├── 14-終章.md
 │   ├── 90-license.md      ライセンス専用ページ（Web/PDF共通）
-│   └── 99-colophon.md     奥付（Web/PDF共通、末尾）
+│   ├── 99-colophon.md     奥付（Web/PDF共通）
+│   └── 裏表紙.md          裏表紙（連番なし。掲載順の末尾に固定で差し込む）
 ├── theme/style.css        Vivliostyleテーマ（ページ設定・フッターのライセンス表記など）
 ├── theme/fonts/           コードブロック用フォント（HackGen Console NF、同梱理由は下記参照）
 ├── assets/

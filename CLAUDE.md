@@ -31,8 +31,10 @@ npm run mermaid:build     # assets/mermaid/*.mmd を assets/images/*.svg に一�
 ## ディレクトリ構成の要点
 
 - `manuscript/`: 章ごとのMarkdown原稿。ファイル名の連番＝掲載順（`vivliostyle.config.js`の
-  コメントに詳細）。`表紙.md`のみ例外で連番を持たず、`vivliostyle.config.js`の`entry`配列で
-  掲載順の先頭に固定で差し込んでいる（Issue #10）。**執筆用の下書きメモ（「クラウドでは」
+  コメントに詳細）。`表紙.md`・`裏表紙.md`のみ例外で連番を持たず、`vivliostyle.config.js`の
+  `entry`配列で掲載順の先頭・末尾にそれぞれ固定で差し込んでいる（Issue #10）。
+  表紙のバージョン表記（`.cover-version`）は`表紙.md`内に直書きしており、単一の情報源になっている。
+  **執筆用の下書きメモ（「クラウドでは」
   「実務メモ」「伏線回収」構成メモ等）は
   `manuscript/*.md`内にHTMLコメントとして書かない**こと。VFMは行頭から始まる複数行の
   HTMLコメントブロックを確実に無視できず、本文として漏れ出る不具合が確認されている
