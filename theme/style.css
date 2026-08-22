@@ -104,6 +104,8 @@ blockquote {
 figure {
   text-align: center;
   margin: 1.5em 0;
+  /* 図とキャプションが別ページに分かれて表示されてしまうのを防ぐ（実測で確認した不具合）。 */
+  break-inside: avoid;
 }
 
 figure img {
