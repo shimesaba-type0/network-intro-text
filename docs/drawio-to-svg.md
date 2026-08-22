@@ -46,8 +46,27 @@ CI環境でdraw.io CLIを常設するのはコストが高いため、このリ�
 ![ネットワーク構成図](../assets/images/05-network-topology.svg)
 ```
 
+VFMのfigureプラグインが`<figure><img><figcaption>`に自動変換し、`alt`の文言がそのまま
+キャプションにも使われる。`alt`（画像が読み込めない場合の代替テキスト・スクリーンリーダー向け）と、
+本文として見せたいキャプションの文言を分けたい場合は、生のHTML `<figure>`を直接書く。
+
+```html
+<figure>
+<img src="../assets/images/05-network-topology.svg" alt="スクリーンリーダー向けの詳細な説明" width="280"/>
+<figcaption>本文として見せたい短いキャプション</figcaption>
+</figure>
+```
+
+（序章の`assets/images/00-*.svg`3点はこの理由で生HTML `<figure>`を使っている。）
+
 ## 4. 運用ルール
 
 - `.drawio`（ソース）と `.svg`（生成物）は両方ともGitにコミットする。
 - 図を修正したら、必ず再エクスポートして `.drawio` と `.svg` をセットでコミットする。
 - ファイル名は原稿内での用途がわかるように、章番号などを接頭辞に付ける（Mermaidと同じ命名規則）。
+
+### 例外: `.drawio`ソースを持たないSVG
+
+`assets/images/00-*.svg`（序章のネットワーク模式図。単体PC、ダムハブ接続、トークンリング接続）は、
+draw.ioのGUI/CLIが使えない環境で作成したため、上記フローに従わず**SVGを直接手書きしている**。
+対応する`.drawio`ソースは存在しない。図を修正する際は、SVGのソースコードを直接編集すること。

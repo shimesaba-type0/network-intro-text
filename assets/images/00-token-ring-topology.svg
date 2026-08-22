@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <g id="pc">
+      <rect x="-30" y="-23" width="60" height="40" rx="4" fill="#ffffff" stroke="#233a5e" stroke-width="3"/>
+      <rect x="-24" y="-17" width="48" height="28" fill="#eef1f6"/>
+      <rect x="-5" y="17" width="10" height="9" fill="#233a5e"/>
+      <rect x="-17" y="26" width="34" height="5" rx="2" fill="#233a5e"/>
+    </g>
+    <polygon id="arrow" points="9,0 -6,-6 -6,6" fill="#233a5e"/>
+  </defs>
+
+  <!-- リング状の接続線（隣どうしをつなぐ） -->
+  <g stroke="#9aa7bd" stroke-width="3" fill="none">
+    <line x1="200" y1="60" x2="333" y2="157"/>
+    <line x1="333" y1="157" x2="282" y2="313"/>
+    <line x1="282" y1="313" x2="118" y2="313"/>
+    <line x1="118" y1="313" x2="67" y2="157"/>
+    <line x1="67" y1="157" x2="200" y2="60"/>
+  </g>
+
+  <!-- 順番（トークン）が回っていく向きを示す矢印 -->
+  <use href="#arrow" transform="translate(266.5,108.5) rotate(36)"/>
+  <use href="#arrow" transform="translate(307.5,235) rotate(108)"/>
+  <use href="#arrow" transform="translate(200,313) rotate(180)"/>
+  <use href="#arrow" transform="translate(92.5,235) rotate(-108)"/>
+  <use href="#arrow" transform="translate(133.5,108.5) rotate(-36)"/>
+
+  <!-- 「今、順番が回ってきている」ことを示すトークン。矢印を隠さないよう、
+       リングの外側にずらして配置している。 -->
+  <g transform="translate(285,83)">
+    <circle r="14" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="3"/>
+    <text x="0" y="-24" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1f6f5c">TOKEN</text>
+  </g>
+
+  <!-- 周囲のPC -->
+  <use href="#pc" x="200" y="60"/>
+  <use href="#pc" x="333" y="157"/>
+  <use href="#pc" x="282" y="313"/>
+  <use href="#pc" x="118" y="313"/>
+  <use href="#pc" x="67" y="157"/>
+</svg>
