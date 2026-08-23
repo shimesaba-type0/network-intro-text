@@ -20,7 +20,7 @@
         <section class="level2">
           <h2 id="51ルーティングテーブルの仕組み">5.1　ルーティングテーブルの仕組み</h2>
           <div class="box-lede">ルータは、パケットの宛先IPアドレスを見て、「次にどのルータ（または機器）へ渡せばよいか」をルーティングテーブルという表で判断しています。</div>
-          <p>第4章で見たように、あて先が別のネットワークにある通信は、デフォルトゲートウェイであるルータに預けられます。では、そのルータは預かった荷物をどこへ送ればよいのでしょうか。ルータは内部に、ルーティングテーブル（経路表）と呼ばれる一覧を持っており、そこに書かれた情報をもとに転送先を決めています。</p>
+          <p>第4章で見たように、宛先が別のネットワークにある通信は、デフォルトゲートウェイであるルータに預けられます。では、そのルータは預かった荷物をどこへ送ればよいのでしょうか。ルータは内部に、ルーティングテーブル（経路表）と呼ばれる一覧を持っており、そこに書かれた情報をもとに転送先を決めています。</p>
           <div class="box-slide">
             <section class="level4">
               <h4 id="ルーティングテーブルの主な項目">ルーティングテーブルの主な項目</h4>
@@ -31,12 +31,12 @@
               </ul>
             </section>
           </div>
-          <p>ある宛先IPアドレスが、ルーティングテーブル上の複数のエントリに部分的に一致することもあります。たとえば<code>192.168.10.5</code>というあて先は、<code>192.168.0.0/16</code>にも<code>192.168.10.0/24</code>にも当てはまります。このような場合、ルータはより長いプレフィックス（より狭い範囲を指す、より詳細なエントリ）を優先します。これをロンゲストプレフィックスマッチ（最長一致）と呼びます。</p>
+          <p>ある宛先IPアドレスが、ルーティングテーブル上の複数のエントリに部分的に一致することもあります。たとえば<code>192.168.10.5</code>という宛先は、<code>192.168.0.0/16</code>にも<code>192.168.10.0/24</code>にも当てはまります。このような場合、ルータはより長いプレフィックス（より狭い範囲を指す、より詳細なエントリ）を優先します。これをロンゲストプレフィックスマッチ（最長一致）と呼びます。</p>
           <figure>
             <img src="../assets/images/05-multihop-routing.svg" alt="PCからサーバーへ複数のルータを経由する通信で、フレームの宛先/送信元MACアドレスはホップごとに書き換わる一方、IPアドレスは経路全体を通じて変わらないことを示す図" width="560">
             <figcaption>ホップを重ねてもIPアドレスは変わらず、MACアドレスだけが1区間ごとに書き換わる</figcaption>
           </figure>
-          <p>第4章の終わりで触れた「IPアドレスが旅全体の最終目的地を、MACアドレスがそのときどきの次の1歩を指し示す」という関係は、ルータが何台連なっても変わりません。ルータは受け取ったパケットのIPアドレスはそのままに、ルーティングテーブルを引いて次のネクストホップを決め、そのネクストホップ宛ての新しいフレーム（宛先MACアドレスを次のホップのものに書き換えたフレーム）に包み直して送り出しているのです。</p>
+          <p>第4章の終わりで触れた「IPアドレスが旅全体の最終目的地を、MACアドレスがそのときどきの次の1歩を指し示す」という関係は、ルータが何台連なっても変わりません。ルータは受け取ったパケットのIPアドレスはそのままに、ルーティングテーブルを引いてネクストホップを決め、そのネクストホップ宛ての新しいフレーム（宛先MACアドレスを次のホップのものに書き換えたフレーム）に包み直して送り出しているのです。</p>
         </section>
         <section class="level2">
           <h2 id="52スタティックルーティングとデフォルトルート">5.2　スタティックルーティングとデフォルトルート</h2>
@@ -63,7 +63,7 @@
         <section class="level2">
           <h2 id="54ospfの基本的な特徴設定エリア設計は扱わない">5.4　OSPFの基本的な特徴（設定・エリア設計は扱わない）</h2>
           <div class="box-lede">OSPF（Open Shortest Path First）は、組織内のネットワーク（1つの管理単位）で広く使われている、リンクステート型のダイナミックルーティングプロトコルです。</div>
-          <p>OSPFは、1998年にRFC 2328として標準化されたプロトコルです※1。隣接するルータ同士がHelloパケットと呼ばれる信号を定期的にやり取りして互いの存在を確認し合い、その後、ネットワーク全体の接続構成の情報（リンクステート情報）を、すべてのルータに行き渡らせます。</p>
+          <p>OSPFの現行仕様は、1998年にRFC 2328として標準化されています※1。隣接するルータ同士がHelloパケットと呼ばれるメッセージを定期的にやり取りして互いの存在を確認し合い、その後、ネットワーク全体の接続構成の情報（リンクステート情報）を、すべてのルータに行き渡らせます。</p>
           <div class="box-slide">
             <section class="level4">
               <h4 id="ospfの特徴">OSPFの特徴</h4>
@@ -71,7 +71,7 @@
                 <li>リンクステート型: 各ルータが、ネットワーク全体の接続構成を把握したうえで、自分自身で最短経路を計算する（計算にはダイクストラ法というアルゴリズムを使う）</li>
                 <li>コストというメトリック: 回線の帯域幅などをもとにした「コスト」の合計が最も小さい経路を、最短経路として選ぶ</li>
                 <li>収束が速い: 経路に変化があった場合、その変化の情報だけをすぐに周囲へ伝えるため、経路表が新しい状態に落ち着くまでの時間が短い</li>
-                <li>IGP（Interior Gateway Protocol）: 1つの組織・1つの管理者が管理する範囲（後述するAS）の「内部」で使うことを想定したプロトコルです</li>
+                <li>IGP（Interior Gateway Protocol）: 1つの組織・1つの管理者が管理する範囲（後述するAS）の「内部」で使うことを想定したプロトコル</li>
               </ul>
             </section>
           </div>
@@ -81,7 +81,7 @@
           <h2 id="55組織間接続からbgpへibgpebgp比較優位性">5.5　組織間接続からBGPへ（iBGP/eBGP、比較優位性）</h2>
           <div class="box-lede">異なる組織同士のネットワーク（AS）をつなぐには、OSPFのような組織内向けのプロトコルではなく、組織間の経路交換に特化したBGPというプロトコルが使われます。</div>
           <p>OSPFは、1つの組織が管理する範囲の内部で使うプロトコルでした。では、大学と大学、企業とインターネットサービスプロバイダ（ISP）のように、それぞれ独立して管理されている組織同士のネットワークをつなぐときは、どうすればよいのでしょうか。</p>
-          <p>ここで登場するのが、AS（Autonomous System、自律システム）という単位です。ASとは、単一の技術的な管理下に置かれ、内部では共通のルーティング方針（OSPFのようなIGP）で経路を制御しているネットワークのまとまりを指し、それぞれのASには、世界で重複しないAS番号が割り当てられます※2。組織同士のネットワークをつなぐということは、つまり異なるASをつなぐということです。</p>
+          <p>ここで登場するのが、AS（Autonomous System、自律システム）という単位です。ASとは、単一の技術的な管理下に置かれ、内部では共通のルーティング方針（OSPFのようなIGP）で経路を制御しているネットワークのまとまりを指し、それぞれのASには、世界で重複しないAS番号が割り当てられます※2（本書の例で使う<code>65001</code>のような番号は、実運用でも試験・社内利用向けに予約されているプライベートAS番号の範囲です）。組織同士のネットワークをつなぐということは、つまり異なるASをつなぐということです。</p>
           <p>異なるASの間では、それぞれの組織が独自の運用方針（どの相手を優先してよいか、どの経路は使いたくないか、など）を持っているため、OSPFのような単純な「コストが一番小さい経路を選ぶ」だけでは不十分です。そこで、AS間の経路交換専用に設計されたBGP（Border Gateway Protocol）というプロトコルが使われます※3。BGP自体は1989年に最初のバージョンが標準化されており、現在広く使われているBGP-4は1994年に初めて標準化された後、2006年にRFC 4271として改訂されています。</p>
           <div class="box-slide">
             <section class="level4">
@@ -103,7 +103,7 @@
           <h2 id="参考文献">参考文献</h2>
           <ul>
             <li>※1: RFC 2328, <em>OSPF Version 2</em> — <a href="https://www.rfc-editor.org/rfc/rfc2328.html">https://www.rfc-editor.org/rfc/rfc2328.html</a></li>
-            <li>※2: RFC 1930, <em>Guidelines for creation, selection, and registration of an Autonomous System (AS)</em> — <a href="https://www.rfc-editor.org/rfc/rfc1930">https://www.rfc-editor.org/rfc/rfc1930</a></li>
+            <li>※2: RFC 1930, <em>Guidelines for creation, selection, and registration of an Autonomous System (AS)</em> — <a href="https://www.rfc-editor.org/rfc/rfc1930.html">https://www.rfc-editor.org/rfc/rfc1930.html</a></li>
             <li>※3: RFC 4271, <em>A Border Gateway Protocol 4 (BGP-4)</em> — <a href="https://www.rfc-editor.org/rfc/rfc4271.html">https://www.rfc-editor.org/rfc/rfc4271.html</a></li>
             <li>※4: Microsoft Learn, <em>ExpressRoute: Routing requirements</em> — <a href="https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing">https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing</a></li>
             <li>※5: AWS Direct Connect User Guide, <em>Routing policies and BGP communities</em> — <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html">https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html</a></li>
