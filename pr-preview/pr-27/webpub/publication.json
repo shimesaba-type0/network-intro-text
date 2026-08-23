@@ -8,7 +8,7 @@
   "name": "ネットワーク基礎再入門",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-08-23T16:24:58.714Z",
+  "dateModified": "2026-08-23T16:32:17.826Z",
   "readingOrder": [
     {
       "url": "manuscript/%E8%A1%A8%E7%B4%99.html",
@@ -113,6 +113,8 @@
     "assets/images/06-dot1q-tag.svg",
     "assets/images/06-trunk-routing.svg",
     "assets/images/06-vlan-segmentation.svg",
+    "assets/images/07-arp-request-reply.svg",
+    "assets/images/07-three-way-handshake.svg",
     "assets/images/08-napt.svg",
     "theme/fonts/HackGenConsoleNF-Bold.woff2",
     "theme/fonts/HackGenConsoleNF-Regular.woff2",
