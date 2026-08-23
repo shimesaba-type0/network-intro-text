@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="utf-8">
+    <title>第10章　DHCPとDNS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="10">
+    <meta name="status" content="draft">
+    <link rel="stylesheet" type="text/css" href="../theme/style.css">
+  </head>
+  <body>
+    <div class="chapter">
+      <section class="level1">
+        <h1 id="第10章dhcpとdns">第10章　DHCPとDNS</h1>
+        <section class="level2">
+          <h2 id="幕間名前を教え合う話">幕間　名前を教え合う話</h2>
+          <p>小さな組織の中でネットワークを使い始めた頃は、機器の数もそれほど多くありません。「このIPアドレスはファイルサーバー」「あのIPアドレスは経理部の複合機」といった対応関係は、機器を管理している数人が頭の中で覚えているか、せいぜい1枚の一覧表を共有しておけば十分でした。実際、コンピュータ自身も、<code>hosts</code>ファイルと呼ばれる簡単な対応表を手元に持たせておくだけで、名前とIPアドレスの対応づけを済ませることができました。</p>
+          <p>しかし、組織の外にある無数のコンピュータともやり取りしたい、という段階になると、この方法は破綻します。世界中の誰かがサーバーを新設したり、IPアドレスを変更したりするたびに、全世界のコンピュータが持つ一覧表を更新して回ることなど、到底できません。この問題を解決するために生まれたのが、この章の後半で見ていくDNS（ドメインネームシステム）と、その頂点に立つルートサーバー群です。</p>
+          <p>まずは、IPアドレスという番号そのものを、機器に自動的に配り届ける仕組みから見ていきましょう。</p>
+        </section>
+        <section class="level2">
+          <h2 id="101dhcp">10.1　DHCP</h2>
+          <div class="box-lede">DHCP（Dynamic Host Configuration Protocol）は、ネットワークに接続した機器に対して、IPアドレスやデフォルトゲートウェイなどの設定情報を自動的に配布する仕組みです。</div>
+          <p>第4章・第5章で見てきたIPアドレスやデフォルトゲートウェイは、本来、機器ごとに手作業で設定する必要があります。しかし、社内に何百台もの機器があるとき、1台ずつ手作業でIPアドレスを設定して回るのは非現実的ですし、設定ミスによるIPアドレスの重複も起こりやすくなります。この問題を解決するのが、DHCPです。RFC 2131として標準化されています※1。</p>
+          <div class="box-slide">
+            <section class="level4">
+              <h4 id="dhcpが自動配布する主な情報">DHCPが自動配布する主な情報</h4>
+              <ul>
+                <li>IPアドレスとサブネットマスク（第4章）</li>
+                <li>デフォルトゲートウェイのIPアドレス（第4章）</li>
+                <li>DNSサーバーのIPアドレス（この章の後半で扱います）</li>
+              </ul>
+            </section>
+          </div>
+          <p>DHCPによるIPアドレスの取得は、4段階のやり取りで行われ、それぞれの頭文字を取ってDORA（Discover, Offer, Request, Acknowledge）と呼ばれています。</p>
+          <figure>
+            <img src="../assets/images/10-dhcp-dora.svg" alt="クライアントがDiscoverをブロードキャストし、DHCPサーバーがOfferを返し、クライアントがRequestで応答し、サーバーがAcknowledgeで確定する4段階のやり取りを示した図" width="440">
+            <figcaption>DHCPのDORAプロセス</figcaption>
+          </figure>
+          <div class="box-slide">
+            <section class="level4">
+              <h4 id="doraプロセスの流れ">DORAプロセスの流れ</h4>
+              <ul>
+                <li>Discover: クライアントが「DHCPサーバーはいませんか」とブロードキャストで問いかける</li>
+                <li>Offer: DHCPサーバーが「このIPアドレスを使えます」と提案を返す</li>
+                <li>Request: クライアントが「その提案のIPアドレスをください」と要求する</li>
+                <li>Acknowledge: DHCPサーバーが割り当てを確定し、クライアントがそのIPアドレスを使い始める</li>
+              </ul>
+            </section>
+          </div>
+          <p>配布されたIPアドレスには、多くの場合「リース期間」という有効期限が設定されており、期限が近づくとクライアントは同じDHCPサーバーに更新を依頼します。機器がネットワークから長期間離れるなどして更新されなければ、そのIPアドレスは他の機器に再利用できる状態に戻ります。</p>
+        </section>
+        <section class="level2">
+          <h2 id="102豆知識家庭のpppoe自宅ルータで簡単に確認できる">10.2　豆知識：家庭のPPPoE（自宅ルータで簡単に確認できる）</h2>
+          <div class="box-lede">PPPoE（PPP over Ethernet）は、家庭のインターネット回線でよく使われる、Ethernet上でPPPというプロトコルを動かし、通信事業者との間で認証・接続を確立する仕組みです。</div>
+          <p>自宅のインターネット回線、特に光回線やDSL回線では、ルータの設定画面に「PPPoE接続」という項目や、プロバイダから渡された「ID」「パスワード」を入力する欄があることがあります。これは、電話回線の時代からあったPPP（Point-to-Point Protocol）という1対1の接続を確立するための仕組みを、Ethernet（第2章・第3章で見たLANの技術）の上で動かせるようにしたもので、RFC 2516として標準化されています※2。</p>
+          <p>家庭のルータは、この認証情報をもとにプロバイダ側の設備とPPPoEセッションを確立し、そのセッションを通じてグローバルIPアドレスなどの情報を受け取ります。自宅のルータの設定画面を開くと、この章で扱ったDHCP（ルータから宅内の機器への配布）とPPPoE（ルータからプロバイダへの接続）という、2種類の異なる仕組みが同時に動いている様子を、実際に確認できることがあります。</p>
+        </section>
+        <section class="level2">
+          <h2 id="103hostsファイルから外部参照そしてルートdnsへ">10.3　hostsファイルから外部参照、そしてルートDNSへ</h2>
+          <div class="box-lede">組織の外にある無数のコンピュータの名前を、1枚の対応表で管理することは不可能なため、名前の管理を階層的に分担する仕組みとして、DNS（Domain Name System）が生まれました。</div>
+          <p>インターネットの黎明期には、接続されているすべてのコンピュータの名前とIPアドレスの対応関係を1つのファイル（<code>HOSTS.TXT</code>）にまとめ、それを定期的に配布するという運用がとられていました。しかし、接続されるコンピュータの数が増えるにつれて、この方法には無理が生じてきます。更新が反映されるまでの遅延、ファイルサイズの肥大化、そして何より、世界中の変更を1か所で管理すること自体の限界です。</p>
+          <p>この課題を解決するために設計されたのが、DNSです。DNSは、名前の管理を「誰か1人がすべて把握する」のではなく、階層構造に分割し、それぞれの階層を別々の管理者が分担する、という発想に基づいています。RFC 1035として標準化されています※3。</p>
+          <figure>
+            <img src="../assets/images/10-dns-hierarchy.svg" alt="ルートの下に.com・.jp・.orgといったトップレベルドメインがあり、さらにその下にexample.comのような個別ドメインの権威サーバーがぶら下がる階層構造を示した図" width="480">
+            <figcaption>DNSの階層構造: ルート → トップレベルドメイン → 個別ドメイン</figcaption>
+          </figure>
+          <p>この階層の頂点に立つのが、ルートサーバーです。ルートサーバーは、末端のドメイン名そのものを知っているわけではなく、「<code>.com</code>について知りたければ、こちらのサーバーに聞いてください」というように、次に問い合わせるべき先を案内する役割を担っています。この階層を、ルート→トップレベルドメイン（<code>.com</code>、<code>.jp</code>など）→個別のドメイン、とたどっていくことで、世界中のどの名前についても、最終的には正しい答えにたどり着けるようになっています。</p>
+        </section>
+        <section class="level2">
+          <h2 id="104dnsの仕組み">10.4　DNSの仕組み</h2>
+          <div class="box-lede">利用者のかわりに階層を順にたどって名前を解決してくれる「フルサービスリゾルバ」と、答えを一定期間覚えておくキャッシュの仕組みによって、DNSは日々の通信を裏で支えています。</div>
+          <p>わたしたちが普段、Webブラウザにドメイン名を入力したとき、実際には次のような流れで名前が解決されています。</p>
+          <div class="box-slide">
+            <section class="level4">
+              <h4 id="名前解決の流れ概略">名前解決の流れ（概略）</h4>
+              <ul>
+                <li>手元の機器は、まず「フルサービスリゾルバ」（多くの場合、ISPやDHCPで指定されたDNSサーバー）に問い合わせる</li>
+                <li>フルサービスリゾルバは、必要に応じてルートサーバー→トップレベルドメインのサーバー→個別ドメインの権威サーバー、と順に問い合わせを重ね（反復問い合わせ）、最終的な答えを手元の機器に返す</li>
+                <li>1度解決した結果は、一定時間（TTL、Time To Live）だけフルサービスリゾルバ側に記憶（キャッシュ）され、同じ問い合わせが来てもすぐに答えられるようにする</li>
+              </ul>
+            </section>
+          </div>
+          <p>このキャッシュの仕組みのおかげで、世界中の利用者が同じ人気サイトへアクセスするたびに、いちいちルートサーバーまで問い合わせが飛ぶ、という事態が避けられています。また、DNSの問い合わせは、多くの場合、第7章で見たUDPの53番ポートを使って行われます。1回のやり取りで完結する軽量な問い合わせという性質上、コネクションを確立する手間のかかるTCPよりも、UDPのほうが向いているためです（大きな応答データを扱う場合など、一部の状況ではTCPも使われます）。</p>
+        </section>
+        <section class="level2">
+          <h2 id="参考文献">参考文献</h2>
+          <ul>
+            <li>※1: RFC 2131, <em>Dynamic Host Configuration Protocol</em> — <a href="https://www.rfc-editor.org/rfc/rfc2131.html">https://www.rfc-editor.org/rfc/rfc2131.html</a></li>
+            <li>※2: RFC 2516, <em>A Method for Transmitting PPP Over Ethernet (PPPoE)</em> — <a href="https://www.rfc-editor.org/rfc/rfc2516.html">https://www.rfc-editor.org/rfc/rfc2516.html</a></li>
+            <li>※3: RFC 1035, <em>Domain Names - Implementation and Specification</em> — <a href="https://www.rfc-editor.org/rfc/rfc1035.html">https://www.rfc-editor.org/rfc/rfc1035.html</a></li>
+          </ul>
+        </section>
+      </section>
+    </div>
+  
+
+</body></html>
