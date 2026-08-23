@@ -35,7 +35,7 @@
             <img src="../assets/images/04-subnet-mask.svg" alt="IPアドレス192.168.1.10のうち、192.168.1の部分がネットワーク部、10の部分がホスト部であることを示した図" width="360">
             <figcaption>IPアドレスは、ネットワーク部とホスト部に分かれる</figcaption>
           </figure>
-          <p>同じネットワーク部を持つ機器同士は、間にルータを挟まずに直接やり取りできる「同じネットワークの中」にいる、とみなされます。1つの大きなネットワークを、部署やフロアといった単位でいくつかの小さなネットワークに分割したいとき、ホスト部の一部をさらにネットワーク部として使うことで、より細かいネットワークに区切ることができます。この分割作業を、サブネッティングと呼びます。細かく分割すればするほど、1つのネットワークに含まれる機器の台数は減っていきます。これは、第3章で見たブロードキャストドメインの範囲を、意図的に小さく保つ効果にもつながります。</p>
+          <p>同じネットワーク部を持つ機器同士は、間にルータを挟まずに直接やり取りできる「同じネットワークの中」にいる、とみなされます。1つの大きなネットワークを、部署やフロアといった単位でいくつかの小さなネットワークに分割したいとき、ホスト部の一部をさらにネットワーク部として使うことで、より細かいネットワークに区切ることができます。この分割作業を、サブネッティングと呼びます。細かく分割すればするほど、1つのネットワークに含まれる機器の台数は減っていきます。これは、第3章で見たブロードキャストドメインの範囲を、意図的に小さく保つ効果にもつながります（図中の「/24」という区切りの書き方は、次の4.3節で詳しく説明します）。</p>
         </section>
         <section class="level2">
           <h2 id="43cidr表記">4.3　CIDR表記</h2>
@@ -60,14 +60,14 @@
           <p>ここで疑問が浮かびます。送信したい相手のIPアドレスはわかっていても、フレームの宛先には本来MACアドレスを書く必要があります。IPアドレスから、対応するMACアドレスをどうやって知ればよいのでしょうか。</p>
           <p>この「IPアドレスから、対応するMACアドレスを問い合わせる」役割を果たすのが、ARP（Address Resolution Protocol）という仕組みです。1982年にRFC 826として標準化されており※3、同じネットワークの中に向けて「このIPアドレスを持っているのは誰ですか」と問いかけ、該当する機器が自分のMACアドレスを返答する、という手順になっています。ARPの具体的な手順は第7章で改めて扱います。</p>
           <p>ここで押さえておきたいのは、通信の最初から最後まで、あて先のIPアドレスはずっと変わらない一方、フレームの宛先MACアドレスは、ルータを1つ越えるたびに「次にどの機器へ渡すか」に応じて書き換えられる、という点です。IPアドレスが旅全体の最終目的地を、MACアドレスがそのときどきの「次の1歩」を指し示している、と考えると、両者の役割の違いがつかみやすくなります。</p>
-          <div class="box-callout cloud">クラウドの仮想ネットワーク（AzureのVNet、AWSのVPCなど）を作成するときも、必ずCIDR表記でアドレス範囲を指定します。たとえば「10.0.0.0/16のVNetの中に、10.0.1.0/24と10.0.2.0/24という2つのサブネットを作る」といった設計は、この章で見てきたサブネッティングとCIDR表記の考え方をそのまま延長したものです。オンプレミスのネットワーク設計とクラウドの仮想ネットワーク設計は、見た目の操作画面こそ違いますが、根底にある考え方は共通しています。</div>
+          <div class="box-callout cloud">MACアドレスとIPアドレスの役割分担から少し話を戻しますが、クラウドの仮想ネットワーク（AzureのVNet、AWSのVPCなど）を作成するときも、必ずCIDR表記でアドレス範囲を指定します。たとえば「10.0.0.0/16のVNetの中に、10.0.1.0/24と10.0.2.0/24という2つのサブネットを作る」といった設計は、この章で見てきたサブネッティングとCIDR表記の考え方をそのまま延長したものです。オンプレミスのネットワーク設計とクラウドの仮想ネットワーク設計は、見た目の操作画面こそ違いますが、根底にある考え方は共通しています。</div>
         </section>
         <section class="level2">
           <h2 id="参考文献">参考文献</h2>
           <ul>
             <li>※1: RFC 1918, <em>Address Allocation for Private Internets</em> — <a href="https://www.rfc-editor.org/rfc/rfc1918.html">https://www.rfc-editor.org/rfc/rfc1918.html</a></li>
-            <li>※2: RFC 4632, <em>Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan</em> — <a href="https://www.rfc-editor.org/rfc/rfc4632">https://www.rfc-editor.org/rfc/rfc4632</a></li>
-            <li>※3: RFC 826, <em>An Ethernet Address Resolution Protocol</em> — <a href="https://www.rfc-editor.org/rfc/rfc826">https://www.rfc-editor.org/rfc/rfc826</a></li>
+            <li>※2: RFC 4632, <em>Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan</em> — <a href="https://www.rfc-editor.org/rfc/rfc4632.html">https://www.rfc-editor.org/rfc/rfc4632.html</a></li>
+            <li>※3: RFC 826, <em>An Ethernet Address Resolution Protocol</em> — <a href="https://www.rfc-editor.org/rfc/rfc826.html">https://www.rfc-editor.org/rfc/rfc826.html</a></li>
           </ul>
         </section>
       </section>
