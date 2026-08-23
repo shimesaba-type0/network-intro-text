@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="480" height="260">
+  <text x="120" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#233a5e">SINGLE-MODE</text>
+
+  <rect x="20" y="80" width="200" height="70" rx="4" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+  <rect x="20" y="108" width="200" height="14" fill="#9aa7bd"/>
+  <line x1="20" y1="115" x2="220" y2="115" stroke="#e0b374" stroke-width="3"/>
+
+  <text x="360" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#233a5e">MULTI-MODE</text>
+
+  <rect x="260" y="80" width="200" height="70" rx="4" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+  <rect x="260" y="92" width="200" height="46" fill="#9aa7bd"/>
+  <polyline points="260,115 300,96 340,134 380,96 420,134 460,115" fill="none" stroke="#e0b374" stroke-width="3"/>
+  <line x1="260" y1="115" x2="460" y2="115" stroke="#e0b374" stroke-width="3"/>
+  <polyline points="260,115 300,134 340,96 380,134 420,96 460,115" fill="none" stroke="#e0b374" stroke-width="3"/>
+
+  <text x="120" y="175" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#233a5e">core: ~9 &#956;m</text>
+  <text x="360" y="175" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#233a5e">core: ~50 / 62.5 &#956;m</text>
+</svg>
