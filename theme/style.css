@@ -94,6 +94,12 @@ pre {
   overflow-wrap: anywhere;
 }
 
+a {
+  /* 参考文献の長いURLがページ幅からはみ出して見切れるのを防ぐ（実測で確認した不具合）。
+     preと同じ理由で、印刷物にはスクロールで隠す余地がないため折り返す。 */
+  overflow-wrap: anywhere;
+}
+
 blockquote {
   border-left: 4px solid var(--color-accent);
   margin-left: 0;
@@ -120,6 +126,8 @@ figcaption {
 table {
   border-collapse: collapse;
   width: 100%;
+  /* 表が途中のページで分割されてしまうのを防ぐ（figureと同じ理由）。 */
+  break-inside: avoid;
 }
 
 th, td {
