@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 275" width="640" height="275">
   <g font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">
     <line x1="60" y1="40" x2="220" y2="40" stroke="#9aa7bd" stroke-width="2" marker-end="url(#arrow)"/>
     <line x1="300" y1="40" x2="410" y2="40" stroke="#9aa7bd" stroke-width="2" marker-end="url(#arrow)"/>
@@ -39,7 +39,5 @@
     <text x="215" y="241" fill="#8a5a1e" text-anchor="middle">Src MAC: R1</text>
     <rect x="280" y="218" width="300" height="36" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
     <text x="430" y="241" fill="#1f6f5c" text-anchor="middle">IP dst: Server / IP src: PC</text>
-
-    <text x="20" y="285" fill="#9aa7bd" font-size="12">MAC addresses change hop-by-hop; the IP addresses stay the same end to end.</text>
   </g>
 </svg>
