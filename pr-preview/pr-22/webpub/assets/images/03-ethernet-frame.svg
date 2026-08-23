@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" fill="#233a5e">
+    <rect x="10" y="40" width="50" height="50" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="35" y="70">Preamble</text>
+
+    <rect x="60" y="40" width="110" height="50" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+    <text x="115" y="65" fill="#1f6f5c">Dst MAC</text>
+    <text x="115" y="80" fill="#1f6f5c">(6 bytes)</text>
+
+    <rect x="170" y="40" width="110" height="50" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+    <text x="225" y="65" fill="#1f6f5c">Src MAC</text>
+    <text x="225" y="80" fill="#1f6f5c">(6 bytes)</text>
+
+    <rect x="280" y="40" width="60" height="50" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
+    <text x="310" y="70" fill="#8a5a1e">Type</text>
+
+    <rect x="340" y="40" width="200" height="50" fill="#ffffff" stroke="#233a5e" stroke-width="2"/>
+    <text x="440" y="70">Payload</text>
+
+    <rect x="540" y="40" width="70" height="50" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="575" y="65">FCS</text>
+    <text x="575" y="80">(4 bytes)</text>
+  </g>
+
+  <text x="310" y="130" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#233a5e">ETHERNET FRAME</text>
+</svg>
