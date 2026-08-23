@@ -1,0 +1,394 @@
+/*
+ * network-intro-text 用の基本テーマ
+ * Vivliostyle CLI（Single Source Multi Output）でWeb/PDF共通に適用される。
+ * ページサイズ・余白はお好みに応じて変更可（例: A5 -> B5）。
+ */
+
+/*
+ * コードブロック用フォント: HackGen Console NF（https://github.com/yuru7/HackGen）
+ * SIL Open Font License 1.1（theme/fonts/LICENSE-HackGen.txt に全文同梱）。
+ * CIやViewerの環境にインストールされているかに依存させたくない（Issue #5と同じ理由）ため、
+ * 名前指定だけに頼らずWOFF2ファイルを同梱し、@font-faceで確実に読み込む。
+ */
+@font-face {
+  font-family: "HackGen Console NF";
+  src: url("./fonts/HackGenConsoleNF-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HackGen Console NF";
+  src: url("./fonts/HackGenConsoleNF-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* "Noto Serif/Sans JP" はOS内蔵やGoogle Fontsでの配布名、"Noto Serif/Sans CJK JP" は
+     Linux(Debian/Ubuntu)の fonts-noto-cjk パッケージが実際にインストールする内部名。
+     CI(GitHub Actions)でPDFをビルドする際にCJKフォントが1つも無いと文字が欠落するため、
+     .github/workflows/*.yml で `apt-get install -y fonts-noto-cjk` を実行し、
+     ここでは両方の名前を候補に入れて確実にヒットさせる（Issue #5）。 */
+  --font-serif: "Noto Serif JP", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --font-mono: "HackGen Console NF", "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
+  --color-text: #1a1a1a;
+  --color-muted: #666666;
+  --color-accent: #1f6f5c;
+  --color-navy: #233a5e;
+
+  /* 本書全体で繰り返し使う5種類の「箱」の配色（Issue #8「この本の読み方」参照）。
+     色と形自体が「これは何を書いてある部分か」を示すので、本文中で
+     「【Tips】」等のラベル文字を都度繰り返す必要はない。 */
+  --color-lede-bg: #fff6d6;
+  --color-lede-border: #e8cf7a;
+  --color-slide-bg: #eef1f6;
+  --color-slide-border: #c7d1e0;
+  --color-amber-bg: #fbf1e2;
+  --color-amber-border: #e0b374;
+  --color-teal-bg: #e9f4f2;
+  --color-teal-border: #9bccc5;
+}
+
+/* 段落の1行目を1文字分字下げする、日本語の書籍で一般的な組み方。 */
+p {
+  text-indent: 1em;
+  margin: 0 0 1em;
+}
+
+html {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  line-height: 1.85;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  line-height: 1.4;
+  break-after: avoid;
+}
+
+h1 {
+  font-size: 1.6em;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.3em;
+  /* @top-center の running header に、現在の章タイトルとして流し込む */
+  string-set: chapter-title content();
+}
+
+pre, code {
+  font-family: var(--font-mono);
+}
+
+pre {
+  background: #f5f5f5;
+  padding: 0.8em 1em;
+  border-radius: 4px;
+  /* overflow-x: auto はPDF/印刷では効かず、はみ出た行が見切れて消えるだけになる
+     （Web版のスクロールと違い、紙面には「隠れた続き」という概念が無いため）。
+     ページ幅に収まらない行は折り返して表示する。 */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+a {
+  /* 参考文献の長いURLがページ幅からはみ出して見切れるのを防ぐ（実測で確認した不具合）。
+     preと同じ理由で、印刷物にはスクロールで隠す余地がないため折り返す。 */
+  overflow-wrap: anywhere;
+}
+
+blockquote {
+  border-left: 4px solid var(--color-accent);
+  margin-left: 0;
+  padding-left: 1em;
+  color: var(--color-muted);
+}
+
+figure {
+  text-align: center;
+  margin: 1.5em 0;
+  /* 図とキャプションが別ページに分かれて表示されてしまうのを防ぐ（実測で確認した不具合）。 */
+  break-inside: avoid;
+}
+
+figure img {
+  max-width: 100%;
+}
+
+figcaption {
+  font-size: 0.85em;
+  color: var(--color-muted);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  /* 表が途中のページで分割されてしまうのを防ぐ（figureと同じ理由）。 */
+  break-inside: avoid;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 0.4em 0.6em;
+}
+
+/*
+ * 本書全体で使う5種類の「箱」（Issue #8「この本の読み方」参照）。
+ * 原稿側では次のように、素のHTML divとして書く（VFMは行頭からの生HTMLブロックを
+ * 正しく通す。ただしHTMLコメントは通らない不具合があるので注意。Issue #5）。
+ *
+ * box-slide内にMarkdown（見出し・リスト）を書く場合、開始・終了divタグの直後/直前に
+ * 必ず空行を入れること。空行がないとVFMがdiv内部をMarkdownとして処理せず、
+ * `#### 見出し` 等が生テキストのまま出力される（実測で確認済み）。
+ *
+ *   <div class="box-lede">一言要約の本文</div>
+ *
+ *   <div class="box-slide">
+ *
+ *   #### なぜ階層化するか
+ *
+ *   - 役割ごとに問題を切り分けられる
+ *   - どこが壊れているか特定しやすい
+ *
+ *   </div>
+ *
+ *   <div class="box-callout jitsumu">実務メモの本文</div>
+ *   <div class="box-callout cloud">クラウドではの本文</div>
+ *
+ * 「詳細」は特別なクラスを持たない、通常の段落として続ける。
+ */
+.box-lede {
+  background: var(--color-lede-bg);
+  border: 1px solid var(--color-lede-border);
+  border-radius: 10px;
+  padding: 0.8em 1.1em;
+  font-weight: 600;
+}
+
+.box-lede p {
+  text-indent: 0;
+  margin: 0;
+}
+
+.box-slide {
+  background: var(--color-slide-bg);
+  border: 1px solid var(--color-slide-border);
+  border-radius: 2px;
+  padding: 1em 1.2em;
+  /* 箱がページの途中で分割されてしまうのを防ぐ（figure/tableと同じ理由）。 */
+  break-inside: avoid;
+}
+
+.box-slide h4 {
+  font-size: 1em;
+  margin: 0 0 0.5em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid var(--color-navy);
+}
+
+.box-slide ul {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.box-callout {
+  border-left: 4px solid;
+  padding: 0.8em 1.1em;
+  /* 箱がページの途中で分割されてしまうのを防ぐ（figure/table/box-slideと同じ理由）。 */
+  break-inside: avoid;
+}
+
+.box-callout p {
+  text-indent: 0;
+  margin: 0;
+}
+
+.box-callout.jitsumu {
+  background: var(--color-amber-bg);
+  border-color: var(--color-amber-border);
+}
+
+.box-callout.cloud {
+  background: var(--color-teal-bg);
+  border-color: var(--color-teal-border);
+}
+
+/*
+ * 表紙（manuscript/表紙.md、Issue #10）専用のレイアウト。
+ * フルブリード（余白なし）の1ページにするため、`page: cover` で本文用の@pageとは別の
+ * named page（下記 `@page cover`）に割り当て、そちらでmargin:0・ヘッダーフッター非表示に
+ * している。ページ寸法はA5固定（本文の@pageと同じ）なので、.coverの幅・高さも
+ * 148mm/210mmで直接指定し、パーセント高さの計算に頼らない。
+ */
+.cover {
+  page: cover;
+  position: relative;
+  box-sizing: border-box;
+  width: 148mm;
+  height: 210mm;
+  margin: 0;
+  padding: 20mm 14mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0f1b30 0%, #16233d 55%, #1c2c4a 100%);
+  color: #ffffff;
+}
+
+/* 表紙右上のバージョン表記（例: "v0.1"）。バージョンの値はmanuscript/表紙.md側に直書きする
+   （単一の情報源）。運用方針はdocs/chapter-notes.mdの決定ログ#10を参照。 */
+.cover-version {
+  position: absolute;
+  top: 12mm;
+  right: 14mm;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #9fb0cc;
+  text-indent: 0;
+}
+
+.cover-main {
+  margin-top: 30mm;
+}
+
+.cover-title {
+  font-family: var(--font-sans);
+  font-size: 26pt;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0 0 10mm;
+  text-indent: 0;
+}
+
+.cover-rule {
+  width: 70%;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--color-amber-border);
+}
+
+.cover-imprint {
+  margin: auto 0 0;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: #cfd8e8;
+  text-indent: 0;
+}
+
+body:has(> .cover) {
+  margin: 0;
+}
+
+@page cover {
+  size: A5;
+  margin: 0;
+
+  @top-center {
+    content: none;
+  }
+  @bottom-center {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+
+/* 奥付（99-colophon.md）専用のレイアウト */
+.colophon {
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.colophon h1 {
+  border-bottom: none;
+}
+
+/*
+ * ページ設定（Web/PDF共通）
+ * Vivliostyle はCSS Paged Media (GCPM) をネイティブにサポートしているため、
+ * PDF出力だけでなく、Vivliostyle Viewerによるページめくり表示（Web版）にも
+ * 同じ @page ルールが適用される。
+ */
+@page {
+  size: A5;
+  margin: 20mm 16mm 24mm 16mm;
+
+  /* 表示 - 非営利 - 改変禁止 4.0 の1行表記（年なし）+ legalcodeへの参照。
+     表紙（@page cover側で非表示）を除く全ページ共通フッター。 */
+  @bottom-center {
+    content: "© Takashi Kouno ・ CC BY-NC-ND 4.0 ・ creativecommons.org/licenses/by-nc-nd/4.0/legalcode";
+    font-family: var(--font-sans);
+    font-size: 7pt;
+    color: var(--color-muted);
+  }
+
+  @bottom-right {
+    content: counter(page);
+    font-family: var(--font-sans);
+    font-size: 8pt;
+    color: var(--color-muted);
+  }
+
+  /* 現在の章タイトルを running header として表示（h1のstring-setを参照） */
+  @top-center {
+    content: string(chapter-title);
+    font-family: var(--font-sans);
+    font-size: 8pt;
+    color: var(--color-muted);
+  }
+}
+
+/* 本の最初のページ（表紙）ではrunning headerを出さない。
+   表紙は`@page cover`側でも同じ指定をしており、ここは念のための二重の保険。 */
+@page :first {
+  @top-center {
+    content: none;
+  }
+}
+
+/*
+ * 目次ページ（Vivliostyle CLIが`{rel: "contents"}`から自動生成する index.html）にも
+ * running headerを出さない。目次自身がh1で書名を表示するため、running headerと二重表示に
+ * なってしまう（表紙をpage 1にする前は目次がpage 1で`@page :first`により隠れていたが、
+ * 表紙の追加でずれたため、目次を独自のnamed pageとして明示的に扱う。実測で確認）。
+ * 目次ページの本文（body > h1 + nav#toc）は原稿のMarkdownではなくVivliostyleが生成するため、
+ * `page:`プロパティを直接書き込めない。かわりに`:has()`でその構造を検出して割り当てる。
+ */
+body:has(> nav#toc) {
+  page: contents;
+}
+
+@page contents {
+  @top-center {
+    content: none;
+  }
+}
+
+/*
+ * 序章・第1〜12章・終章は、見開きにしたとき必ず左ページ（偶数ページ）から始まるようにする。
+ * CSS Fragmentation（break-before: left）は、直前のページが既に左ページなら自動で
+ * 右ページを1枚空白のまま挿入してから、次の左ページに送る。
+ * `manuscript/*.md`側では、対象ファイルの本文全体を`<div class="chapter">...</div>`で
+ * 包むことでこのクラスを付与している。
+ *
+ * この自動挿入される空白ページを罫線入りのメモページとして装飾する`@page :blank`を
+ * 試したが、Vivliostyle Core（@vivliostyle/core/lib/vivliostyle.js）は自動挿入した
+ * 空白ページに対してbackground・margin box content（@bottom-right等）のいずれも描画しない
+ * （実測で確認: size/background-colorを明示的に変えても反映されない）。そのため現状は
+ * 素の空白ページのまま（一般的な書籍の「無地の予備ページ」と同じ扱い）にしている。
+ */
+.chapter {
+  break-before: left;
+}
