@@ -178,6 +178,8 @@ th, td {
   border: 1px solid var(--color-slide-border);
   border-radius: 2px;
   padding: 1em 1.2em;
+  /* 箱がページの途中で分割されてしまうのを防ぐ（figure/tableと同じ理由）。 */
+  break-inside: avoid;
 }
 
 .box-slide h4 {
@@ -197,6 +199,8 @@ th, td {
 .box-callout {
   border-left: 4px solid;
   padding: 0.8em 1.1em;
+  /* 箱がページの途中で分割されてしまうのを防ぐ（figure/table/box-slideと同じ理由）。 */
+  break-inside: avoid;
 }
 
 .box-callout p {
