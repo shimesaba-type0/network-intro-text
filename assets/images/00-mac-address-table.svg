@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300">
+  <defs>
+    <g id="pc">
+      <rect x="-30" y="-23" width="60" height="40" rx="4" fill="#ffffff" stroke="#233a5e" stroke-width="3"/>
+      <rect x="-24" y="-17" width="48" height="28" fill="#eef1f6"/>
+      <rect x="-5" y="17" width="10" height="9" fill="#233a5e"/>
+      <rect x="-17" y="26" width="34" height="5" rx="2" fill="#233a5e"/>
+    </g>
+    <polygon id="arrow" points="0,9 -6,-6 6,-6" fill="#1f6f5c"/>
+  </defs>
+
+  <!-- スイッチ本体 -->
+  <rect x="140" y="110" width="200" height="80" rx="8" fill="#eef1f6" stroke="#233a5e" stroke-width="3"/>
+
+  <!-- 内部のMACアドレステーブル -->
+  <rect x="160" y="122" width="160" height="44" rx="4" fill="#ffffff" stroke="#9aa7bd" stroke-width="2"/>
+  <text x="240" y="140" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#233a5e">A -&gt; port 1</text>
+  <text x="240" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#233a5e">C -&gt; port 3</text>
+
+  <!-- 各ポートとPCへの配線 -->
+  <g stroke="#9aa7bd" stroke-width="3">
+    <line x1="165" y1="190" x2="165" y2="237"/>
+    <line x1="215" y1="190" x2="215" y2="237"/>
+    <line x1="265" y1="190" x2="265" y2="237"/>
+    <line x1="315" y1="190" x2="315" y2="237"/>
+  </g>
+
+  <!-- Aから届いたフレームがCにだけ転送される -->
+  <use href="#arrow" transform="translate(165,195) rotate(180)"/>
+  <use href="#arrow" transform="translate(265,232)"/>
+
+  <use href="#pc" x="165" y="260"/>
+  <use href="#pc" x="215" y="260"/>
+  <use href="#pc" x="265" y="260"/>
+  <use href="#pc" x="315" y="260"/>
+
+  <text x="165" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#233a5e">A</text>
+  <text x="215" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#233a5e">B</text>
+  <text x="265" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#233a5e">C</text>
+  <text x="315" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#233a5e">D</text>
+</svg>
