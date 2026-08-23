@@ -23,5 +23,5 @@
   <line x1="420" y1="100" x2="420" y2="110" stroke="#e0b374" stroke-width="2"/>
   <text x="370" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#8a5a1e">HOST</text>
 
-  <text x="240" y="165" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#233a5e">192.168.1.10 / 24</text>
+  <text x="240" y="165" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#233a5e">192.168.1.10/24</text>
 </svg>
