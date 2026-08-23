@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="480" height="200">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle">
+    <text x="120" y="20" font-weight="bold" fill="#233a5e">HTTP</text>
+    <rect x="20" y="30" width="200" height="40" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="120" y="54" fill="#233a5e" font-size="10">TCP</text>
+    <rect x="20" y="70" width="200" height="40" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+    <text x="120" y="94" fill="#1f6f5c" font-weight="bold">HTTP (plain text)</text>
+
+    <text x="360" y="20" font-weight="bold" fill="#233a5e">HTTPS</text>
+    <rect x="260" y="30" width="200" height="40" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="360" y="54" fill="#233a5e" font-size="10">TCP</text>
+    <rect x="260" y="70" width="200" height="40" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
+    <text x="360" y="94" fill="#8a5a1e" font-weight="bold">TLS (encryption)</text>
+    <rect x="260" y="110" width="200" height="40" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+    <text x="360" y="134" fill="#1f6f5c" font-weight="bold">HTTP (encrypted)</text>
+  </g>
+</svg>
