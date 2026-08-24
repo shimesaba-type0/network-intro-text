@@ -13,6 +13,8 @@ status: draft
 
 **発行**　（自費出版 / Web公開）
 
+**初版発行日**　2026年8月24日
+
 **リポジトリ**　https://github.com/shimesaba-type0/network-intro-text
 
 ---
