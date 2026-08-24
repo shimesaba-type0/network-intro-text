@@ -26,10 +26,7 @@ Creative Commons 表示 - 非営利 - 改変禁止 4.0 国際（CC BY-NC-ND 4.0�
 - 非営利目的での利用に限ること
 - 原文を改変せず、そのままの形で共有すること
 
-を条件に、本書の複製・共有を自由に行うことができます。詳しくは
-「ライセンスについて」の章、および正式なライセンス条文
-（[https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)）
-を参照してください。
+を条件に、本書の複製・共有を自由に行うことができます。詳しくは「ライセンスについて」の章、および正式なライセンス条文（[https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)）を参照してください。
 
 © Takashi Kouno
 
