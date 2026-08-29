@@ -96,11 +96,12 @@
             </section>
           </div>
           <p>10Mbps・100Mbpsの時代は、オートネゴシエーションはあくまで任意の機能で、両端を手動で固定することもできました（だからこそ、片方だけ固定してしまうデュプレックスミスマッチ事故が起きたのです）。これに対し、1Gbps以上の規格（1000BASE-Tや10GBASE-Tなど）では、そもそもオートネゴシエーションによる速度合わせが必須の仕組みとして組み込まれており、手動で固定するという選択肢自体が用意されていません。</p>
+          <div class="box-callout jitsumu">実務では、スイッチのCLI上に「速度1000Mbps・全二重」のような設定コマンドが用意されていることがあります。これは、ネゴシエーションの仕組みそのものを止めているのではなく、申告する候補を1つに絞り込んでいるだけです※4。ごく一部の古い機器では、この設定によって本当にネゴシエーションが無効化され、規格から外れた挙動になることもあります。</div>
         </section>
         <section class="level2">
           <h2 id="25無線lan規格の変遷wi-fi-47理論値の推移">2.5　無線LAN規格の変遷（Wi-Fi 4→7、理論値の推移）</h2>
           <div class="box-lede">無線LANの規格は「Wi-Fi 4」のように世代番号で呼ばれるようになり、世代を追うごとに理論上の最大速度が大きく伸びてきました。</div>
-          <p>無線LANの規格は、本来IEEE 802.11の後ろに付くアルファベット（802.11n、802.11acなど）で区別されていましたが、一般の利用者には分かりにくいため、業界団体のWi-Fi Allianceが「Wi-Fi 4」のような世代番号による呼び方を導入しました。この番号は802.11n以降にさかのぼって付け直されたものです※4。</p>
+          <p>無線LANの規格は、本来IEEE 802.11の後ろに付くアルファベット（802.11n、802.11acなど）で区別されていましたが、一般の利用者には分かりにくいため、業界団体のWi-Fi Allianceが「Wi-Fi 4」のような世代番号による呼び方を導入しました。この番号は802.11n以降にさかのぼって付け直されたものです※5。</p>
           <div class="box-slide">
             <section class="level4">
               <h4 id="主な世代と特徴">主な世代と特徴</h4>
@@ -113,7 +114,7 @@
               </ul>
             </section>
           </div>
-          <p>ここで挙げた理論値は、いずれも実験室環境での最大値です※4。実際の通信速度は、電波の届く距離、障害物、同時に接続している端末の台数、周囲の電波干渉など、さまざまな要因で理論値より大きく下がります。世代を追うごとに理論値が伸びているのは事実ですが、「Wi-Fi 6だから必ず速い」とは限らない、という点には注意が必要です。</p>
+          <p>ここで挙げた理論値は、いずれも実験室環境での最大値です※5。実際の通信速度は、電波の届く距離、障害物、同時に接続している端末の台数、周囲の電波干渉など、さまざまな要因で理論値より大きく下がります。世代を追うごとに理論値が伸びているのは事実ですが、「Wi-Fi 6だから必ず速い」とは限らない、という点には注意が必要です。</p>
         </section>
         <section class="level2">
           <h2 id="26poepower-over-ethernet">2.6　PoE（Power over Ethernet）</h2>
@@ -160,7 +161,7 @@
               </table>
             </section>
           </div>
-          <p>世代が進むほど、供給できる電力は大きくなっています※5。PSE側の供給電力とPD側の受電電力に差があるのは、ケーブルの途中で電力の一部が失われることをあらかじめ見込んだ規格になっているためです。</p>
+          <p>世代が進むほど、供給できる電力は大きくなっています※6。PSE側の供給電力とPD側の受電電力に差があるのは、ケーブルの途中で電力の一部が失われることをあらかじめ見込んだ規格になっているためです。</p>
           <div class="box-callout jitsumu">スイッチには、PoEポート1つあたりの上限とは別に、スイッチ全体としての「電力予算」が決められています。たとえば1台のスイッチの総電力予算が370Wだった場合、PoE++対応の高出力カメラを何台も接続していくと、各ポートの上限（60W等）以内に収まっていても、スイッチ全体の予算を使い切ってしまうことがあります。この場合、あるポートに機器をつないでも電源が入らなかったり、既存の機器が突然給電を止められたりする、という分かりにくい現象が起こります。PoE機器を増設する際は、ポート単位の上限だけでなく、スイッチ全体の電力予算にも余裕があるかを確認する必要があります。</div>
           <div class="box-callout cloud">クラウドを利用しているとき、わたしたちがどんな種類のケーブルや光ファイバの上で通信しているかを意識することは、ほとんどありません。物理層の管理は、データセンターを運用するクラウド事業者側の責任範囲だからです。それでも物理層の影響がまったく見えなくなるわけではなく、たとえば「利用者に近いリージョンを選ぶと通信の遅延が小さくなる」「仮想ネットワークのゲートウェイに帯域の上限プランがある」といった形で、物理的な距離や回線容量の制約が、サービスの選択肢として間接的に姿を現します。</div>
         </section>
@@ -170,8 +171,9 @@
             <li>※1: <em>Ethernet Cable Standards Explained: TIA-568, Cable Categories, and the Truth About CAT6E</em> — Vertical Cable — <a href="https://verticalcable.com/blog/ethernet-cable-standards-explained">https://verticalcable.com/blog/ethernet-cable-standards-explained</a></li>
             <li>※2: <em>Ethernet physical layer</em> — Wikipedia — <a href="https://en.wikipedia.org/wiki/Ethernet_physical_layer">https://en.wikipedia.org/wiki/Ethernet_physical_layer</a></li>
             <li>※3: <em>Autonegotiation</em> — Wikipedia — <a href="https://en.wikipedia.org/wiki/Autonegotiation">https://en.wikipedia.org/wiki/Autonegotiation</a></li>
-            <li>※4: <em>The Evolution of Wi-Fi Technology and Standards</em> — IEEE Standards Association — <a href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/">https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a></li>
-            <li>※5: <em>Power over Ethernet Standards (802.3af, 802.3at, &amp; 802.3bt)</em> — NVT Phybridge — <a href="https://www.nvtphybridge.com/power-over-ethernet-standards/">https://www.nvtphybridge.com/power-over-ethernet-standards/</a></li>
+            <li>※4: Cisco, <em>Configure and Verify Ethernet 10/100/1000Mb Half/Full Duplex Auto-Negotiation</em> — <a href="https://www.cisco.com/c/en/us/support/docs/lan-switching/ethernet/10561-3.html">https://www.cisco.com/c/en/us/support/docs/lan-switching/ethernet/10561-3.html</a></li>
+            <li>※5: <em>The Evolution of Wi-Fi Technology and Standards</em> — IEEE Standards Association — <a href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/">https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a></li>
+            <li>※6: <em>Power over Ethernet Standards (802.3af, 802.3at, &amp; 802.3bt)</em> — NVT Phybridge — <a href="https://www.nvtphybridge.com/power-over-ethernet-standards/">https://www.nvtphybridge.com/power-over-ethernet-standards/</a></li>
           </ul>
         </section>
       </section>
