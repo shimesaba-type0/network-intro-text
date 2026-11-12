@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="520" height="220">
+  <defs>
+    <g id="pc">
+      <rect x="-30" y="-23" width="60" height="40" rx="4" fill="#ffffff" stroke="#233a5e" stroke-width="3"/>
+      <rect x="-24" y="-17" width="48" height="28" fill="#eef1f6"/>
+      <rect x="-5" y="17" width="10" height="9" fill="#233a5e"/>
+      <rect x="-17" y="26" width="34" height="5" rx="2" fill="#233a5e"/>
+    </g>
+  </defs>
+
+  <!-- 幹線となる同軸ケーブルと、両端のターミネータ -->
+  <line x1="40" y1="150" x2="480" y2="150" stroke="#233a5e" stroke-width="4"/>
+  <rect x="34" y="140" width="8" height="20" fill="#233a5e"/>
+  <rect x="478" y="140" width="8" height="20" fill="#233a5e"/>
+
+  <!-- 幹線から各PCへの分岐線 -->
+  <g stroke="#9aa7bd" stroke-width="3">
+    <line x1="100" y1="111" x2="100" y2="150"/>
+    <line x1="190" y1="111" x2="190" y2="150"/>
+    <line x1="280" y1="111" x2="280" y2="150"/>
+    <line x1="370" y1="111" x2="370" y2="150"/>
+    <line x1="460" y1="111" x2="460" y2="150"/>
+  </g>
+
+  <use href="#pc" x="100" y="80"/>
+  <use href="#pc" x="190" y="80"/>
+  <use href="#pc" x="280" y="80"/>
+  <use href="#pc" x="370" y="80"/>
+  <use href="#pc" x="460" y="80"/>
+</svg>
