@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <g id="pc">
+      <rect x="-30" y="-23" width="60" height="40" rx="4" fill="#ffffff" stroke="#233a5e" stroke-width="3"/>
+      <rect x="-24" y="-17" width="48" height="28" fill="#eef1f6"/>
+      <rect x="-5" y="17" width="10" height="9" fill="#233a5e"/>
+      <rect x="-17" y="26" width="34" height="5" rx="2" fill="#233a5e"/>
+    </g>
+    <polygon id="arrow" points="9,0 -6,-6 -6,6" fill="#233a5e"/>
+  </defs>
+
+  <text x="200" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#233a5e">HALF DUPLEX</text>
+  <line x1="80" y1="90" x2="320" y2="90" stroke="#9aa7bd" stroke-width="4"/>
+  <use href="#arrow" transform="translate(230,90)"/>
+  <use href="#pc" x="80" y="90"/>
+  <use href="#pc" x="320" y="90"/>
+
+  <text x="200" y="180" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#233a5e">FULL DUPLEX</text>
+  <line x1="80" y1="215" x2="320" y2="215" stroke="#9aa7bd" stroke-width="4"/>
+  <use href="#arrow" transform="translate(230,215)"/>
+  <line x1="80" y1="245" x2="320" y2="245" stroke="#9aa7bd" stroke-width="4"/>
+  <use href="#arrow" transform="translate(170,245) rotate(180)"/>
+  <use href="#pc" x="80" y="230"/>
+  <use href="#pc" x="320" y="230"/>
+</svg>
