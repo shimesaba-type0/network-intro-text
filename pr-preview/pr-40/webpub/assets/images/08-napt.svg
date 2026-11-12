@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="560" height="260">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle">
+    <circle cx="60" cy="60" r="22" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="60" y="64" fill="#233a5e" font-size="10">10.0.0.11</text>
+    <circle cx="60" cy="140" r="22" fill="#eef1f6" stroke="#233a5e" stroke-width="2"/>
+    <text x="60" y="144" fill="#233a5e" font-size="10">10.0.0.12</text>
+
+    <rect x="200" y="70" width="160" height="60" rx="8" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2.5"/>
+    <text x="280" y="96" fill="#1f6f5c" font-weight="bold">NAT / NAPT</text>
+    <text x="280" y="114" fill="#1f6f5c" font-size="10">router</text>
+
+    <line x1="82" y1="70" x2="200" y2="95" stroke="#9aa7bd" stroke-width="2"/>
+    <line x1="82" y1="130" x2="200" y2="105" stroke="#9aa7bd" stroke-width="2"/>
+
+    <line x1="360" y1="100" x2="480" y2="100" stroke="#9aa7bd" stroke-width="2"/>
+    <circle cx="510" cy="100" r="24" fill="#fbf1e2" stroke="#e0b374" stroke-width="2.5"/>
+    <text x="510" y="104" fill="#8a5a1e" font-size="10">Internet</text>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="11">
+    <text x="280" y="60" text-anchor="middle" fill="#233a5e" font-weight="bold">203.0.113.5</text>
+
+    <rect x="60" y="170" width="440" height="72" rx="6" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
+    <text x="80" y="188" fill="#8a5a1e" font-weight="bold">NAPT table (translation)</text>
+    <text x="80" y="206" fill="#8a5a1e" font-family="monospace" font-size="10">10.0.0.11 : 51000  &#8596;  203.0.113.5 : 40001</text>
+    <text x="80" y="224" fill="#8a5a1e" font-family="monospace" font-size="10">10.0.0.12 : 51000  &#8596;  203.0.113.5 : 40002</text>
+  </g>
+</svg>

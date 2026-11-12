@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="560" height="260">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle">
+    <circle cx="80" cy="60" r="26" fill="#eef1f6" stroke="#233a5e" stroke-width="2.5"/>
+    <text x="80" y="65" fill="#233a5e" font-weight="bold">PC-A</text>
+
+    <circle cx="280" cy="60" r="26" fill="#fbf1e2" stroke="#e0b374" stroke-width="2.5"/>
+    <text x="280" y="65" fill="#8a5a1e" font-weight="bold">PC-B</text>
+
+    <circle cx="480" cy="60" r="26" fill="#fbf1e2" stroke="#e0b374" stroke-width="2.5"/>
+    <text x="480" y="65" fill="#8a5a1e" font-weight="bold">PC-C</text>
+
+    <text x="280" y="20" font-weight="bold" fill="#233a5e" font-size="13">1: ARP Request (broadcast)</text>
+    <line x1="106" y1="80" x2="254" y2="80" stroke="#233a5e" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow3)"/>
+    <line x1="106" y1="80" x2="454" y2="80" stroke="#233a5e" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow3)"/>
+    <text x="280" y="100" fill="#233a5e" font-size="11">"Who has 10.0.0.20?"</text>
+  </g>
+
+  <defs>
+    <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#233a5e"/>
+    </marker>
+    <marker id="arrow4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1f6f5c"/>
+    </marker>
+  </defs>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle">
+    <text x="180" y="150" font-weight="bold" fill="#1f6f5c" font-size="13">2: ARP Reply (unicast)</text>
+    <line x1="254" y1="170" x2="106" y2="170" stroke="#1f6f5c" stroke-width="2" marker-end="url(#arrow4)"/>
+    <text x="180" y="190" fill="#1f6f5c" font-size="11">"10.0.0.20 is at AA:BB:...:20"</text>
+
+    <text x="480" y="150" fill="#9aa7bd" font-size="11">(PC-C: not me,</text>
+    <text x="480" y="166" fill="#9aa7bd" font-size="11">stays silent)</text>
+  </g>
+</svg>
