@@ -1,25 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 215" width="480" height="215">
-  <line x1="200" y1="30" x2="200" y2="200" stroke="#233a5e" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="200" y="18" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">必要な台数: 1,000台</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 225" width="480" height="225">
+  <text x="240" y="22" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">必要なホスト数: 1,000台（10ビット＝1,024台分）</text>
+  <line x1="240" y1="34" x2="240" y2="204" stroke="#233a5e" stroke-width="1.5" stroke-dasharray="4 3"/>
 
-  <!-- クラスB: 大きすぎる -->
-  <text x="20" y="42" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">クラスBを割り当てると…（65,534台分）</text>
-  <rect x="20" y="50" width="380" height="22" fill="#eef1f6" stroke="#9aa7bd" stroke-width="1.5"/>
-  <rect x="20" y="50" width="180" height="22" fill="#1f6f5c"/>
-  <text x="110" y="65" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#ffffff">使用: 1,000</text>
-  <text x="300" y="65" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#233a5e">未使用（無駄）: 約64,500台</text>
+  <!-- クラスB: ネットワーク部16ビット / ホスト部16ビット -->
+  <text x="20" y="46" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">クラスB（ホスト部16ビット → 65,534台分）</text>
+  <rect x="20" y="52" width="160" height="24" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+  <rect x="180" y="52" width="160" height="24" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
 
-  <!-- クラスC: 小さすぎる -->
-  <text x="20" y="102" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">クラスCを割り当てると…（254台分）</text>
-  <rect x="20" y="110" width="120" height="22" fill="#1f6f5c"/>
-  <text x="80" y="125" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#ffffff">使用: 254（全部）</text>
-  <rect x="140" y="110" width="60" height="22" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="3 2"/>
-  <text x="170" y="142" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#c0392b">746台不足</text>
+  <!-- クラスC: ネットワーク部24ビット / ホスト部8ビット -->
+  <text x="20" y="90" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">クラスC（ホスト部8ビット → 254台分）</text>
+  <rect x="20" y="96" width="240" height="24" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+  <rect x="260" y="96" width="80" height="24" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
+  <line x1="240" y1="120" x2="240" y2="128" stroke="#c0392b" stroke-width="2"/>
+  <line x1="260" y1="120" x2="260" y2="128" stroke="#c0392b" stroke-width="2"/>
+  <line x1="240" y1="128" x2="260" y2="128" stroke="#c0392b" stroke-width="2"/>
+  <text x="250" y="140" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#c0392b">2ビット不足</text>
 
-  <!-- CIDR /22: ちょうどよい -->
-  <text x="20" y="166" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">CIDRで「/22」を割り当てると…（1,022台分）</text>
-  <rect x="20" y="174" width="184" height="22" fill="#eef1f6" stroke="#9aa7bd" stroke-width="1.5"/>
-  <rect x="20" y="174" width="180" height="22" fill="#1f6f5c"/>
-  <text x="110" y="189" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#ffffff">使用: 1,000</text>
-  <text x="225" y="189" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#233a5e">22台</text>
+  <!-- CIDR /22: ネットワーク部22ビット / ホスト部10ビット -->
+  <text x="20" y="150" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#233a5e">CIDRで「/22」を割り当てると…（ホスト部10ビット → 1,022台分）</text>
+  <rect x="20" y="156" width="220" height="24" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="2"/>
+  <rect x="240" y="156" width="100" height="24" fill="#fbf1e2" stroke="#e0b374" stroke-width="2"/>
+  <text x="240" y="192" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#1f6f5c">ちょうど境界に一致</text>
+
+  <!-- 凡例 -->
+  <rect x="20" y="206" width="12" height="12" fill="#e9f4f2" stroke="#1f6f5c" stroke-width="1.5"/>
+  <text x="37" y="216" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#233a5e">ネットワーク部</text>
+  <rect x="130" y="206" width="12" height="12" fill="#fbf1e2" stroke="#e0b374" stroke-width="1.5"/>
+  <text x="147" y="216" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#233a5e">ホスト部</text>
 </svg>
