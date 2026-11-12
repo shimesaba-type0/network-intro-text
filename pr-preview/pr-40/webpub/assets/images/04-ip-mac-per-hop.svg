@@ -36,15 +36,15 @@
   <text x="385" y="116" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#8a5a1e">送信元IP: PC1</text>
 
   <!-- 変化/不変の注記 -->
-  <line x1="80" y1="120" x2="80" y2="154" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="80" y1="120" x2="80" y2="140" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="4 3"/>
   <text x="80" y="133" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#d9730d">≠</text>
   <text x="80" y="151" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#d9730d">書き換え</text>
 
-  <line x1="225" y1="120" x2="225" y2="154" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="225" y1="120" x2="225" y2="140" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="4 3"/>
   <text x="225" y="133" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#d9730d">≠</text>
   <text x="225" y="151" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#d9730d">書き換え</text>
 
-  <line x1="385" y1="120" x2="385" y2="154" stroke="#1f6f5c" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="385" y1="120" x2="385" y2="140" stroke="#1f6f5c" stroke-width="1.5" stroke-dasharray="4 3"/>
   <text x="385" y="133" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#1f6f5c">＝</text>
   <text x="385" y="151" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#1f6f5c">変わらない</text>
 
