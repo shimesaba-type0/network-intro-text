@@ -19,6 +19,9 @@ package-lock.json
 # mermaid-cli が一時的に生成するファイル
 *.mermaid.tmp
 
+# レビュー用サブエージェントが作るgit worktree（.claude/worktrees/agent-<id>/）
+.claude/worktrees/
+
 # OS / エディタ
 .DS_Store
 Thumbs.db
