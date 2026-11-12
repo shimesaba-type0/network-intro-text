@@ -8,7 +8,7 @@
   "name": "ネットワーク基礎再入門",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-08-29T10:02:47.786Z",
+  "dateModified": "2026-11-12T13:33:41.634Z",
   "readingOrder": [
     {
       "url": "manuscript/%E8%A1%A8%E7%B4%99.html",
@@ -104,6 +104,7 @@
     "assets/images/01-circuit-vs-packet.svg",
     "assets/images/01-osi-layers.svg",
     "assets/images/02-fiber-modes.svg",
+    "assets/images/03-broadcast-storm.svg",
     "assets/images/03-domains-comparison.svg",
     "assets/images/03-ethernet-frame.svg",
     "assets/images/04-encapsulation.svg",
