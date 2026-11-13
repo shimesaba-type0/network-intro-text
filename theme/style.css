@@ -394,3 +394,17 @@ body:has(> nav#toc) {
 .chapter {
   break-before: left;
 }
+
+/*
+ * 章内の各節（##見出し）も、章の始まりと同じように新しいページの先頭から
+ * 始まるようにする。ただし章の最初の節（h1の直後、章扉と同じページに続く）は
+ * 対象外（:not(:first-of-type)）。これにより、短い節の後に大きな余白ページが
+ * 増えるトレードオフがある（章がbreak-before: leftで奇数ページ挿入を許容して
+ * いるのと同じ考え方）。
+ * VFMは各##見出しを<section class="level2">でラップするため、見出し（h2）
+ * 自体に:not(:first-of-type)を付けても、どのh2も自分のsection内で唯一の
+ * h2＝「最初のh2」になってしまい一致しない。section.level2の側に付ける。
+ */
+.chapter section.level2:not(:first-of-type) {
+  break-before: page;
+}
