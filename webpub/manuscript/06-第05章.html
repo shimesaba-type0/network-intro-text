@@ -31,7 +31,7 @@
               </ul>
             </section>
           </div>
-          <p>ある宛先IPアドレスが、ルーティングテーブル上の複数のエントリに部分的に一致することもあります。たとえば<code>192.168.10.5</code>という宛先は、<code>192.168.0.0/16</code>にも<code>192.168.10.0/24</code>にも当てはまります。このような場合、ルータはより長いプレフィックス（より狭い範囲を指す、より詳細なエントリ）を優先します。これをロンゲストプレフィックスマッチ（最長一致）と呼びます。</p>
+          <p>ある宛先IPアドレスが、ルーティングテーブル上の複数のエントリに部分的に一致することもあります。たとえば<code>192.168.10.5</code>という宛先は、<code>192.168.0.0/16</code>にも<code>192.168.10.0/24</code>にも当てはまります。このような場合、ルータはより長いプレフィックス（より狭い範囲を指す、より詳細なエントリ）を優先します。これをロンゲストプレフィックスマッチ（最長一致）と呼びます※1。</p>
           <figure>
             <img src="../assets/images/05-multihop-routing.svg" alt="PCからサーバーへ複数のルータを経由する通信で、フレームの宛先/送信元MACアドレスはホップごとに書き換わる一方、IPアドレスは経路全体を通じて変わらないことを示す図" width="560">
             <figcaption>ホップを重ねてもIPアドレスは変わらず、MACアドレスだけが1区間ごとに書き換わる</figcaption>
@@ -63,7 +63,7 @@
         <section class="level2">
           <h2 id="54ospfの基本的な特徴設定エリア設計は扱わない">5.4　OSPFの基本的な特徴（設定・エリア設計は扱わない）</h2>
           <div class="box-lede">OSPF（Open Shortest Path First）は、組織内のネットワーク（1つの管理単位）で広く使われている、リンクステート型のダイナミックルーティングプロトコルです。</div>
-          <p>OSPFの現行仕様は、1998年にRFC 2328として標準化されています※1。隣接するルータ同士がHelloパケットと呼ばれるメッセージを定期的にやり取りして互いの存在を確認し合い、その後、ネットワーク全体の接続構成の情報（リンクステート情報）を、すべてのルータに行き渡らせます。</p>
+          <p>OSPFの現行仕様は、1998年にRFC 2328として標準化されています※2。隣接するルータ同士がHelloパケットと呼ばれるメッセージを定期的にやり取りして互いの存在を確認し合い、その後、ネットワーク全体の接続構成の情報（リンクステート情報）を、すべてのルータに行き渡らせます。</p>
           <div class="box-slide">
             <section class="level4">
               <h4 id="ospfの特徴">OSPFの特徴</h4>
@@ -81,8 +81,8 @@
           <h2 id="55組織間接続からbgpへibgpebgp比較優位性">5.5　組織間接続からBGPへ（iBGP/eBGP、比較優位性）</h2>
           <div class="box-lede">異なる組織同士のネットワーク（AS）をつなぐには、OSPFのような組織内向けのプロトコルではなく、組織間の経路交換に特化したBGPというプロトコルが使われます。</div>
           <p>OSPFは、1つの組織が管理する範囲の内部で使うプロトコルでした。では、大学と大学、企業とインターネットサービスプロバイダ（ISP）のように、それぞれ独立して管理されている組織同士のネットワークをつなぐときは、どうすればよいのでしょうか。</p>
-          <p>ここで登場するのが、AS（Autonomous System、自律システム）という単位です。ASとは、単一の技術的な管理下に置かれ、内部では共通のルーティング方針（OSPFのようなIGP）で経路を制御しているネットワークのまとまりを指し、それぞれのASには、世界で重複しないAS番号が割り当てられます※2（本書の例で使う<code>65001</code>のような番号は、実運用でも試験・社内利用向けに予約されているプライベートAS番号の範囲です）。組織同士のネットワークをつなぐということは、つまり異なるASをつなぐということです。</p>
-          <p>異なるASの間では、それぞれの組織が独自の運用方針（どの相手を優先してよいか、どの経路は使いたくないか、など）を持っているため、OSPFのような単純な「コストが一番小さい経路を選ぶ」だけでは不十分です。そこで、AS間の経路交換専用に設計されたBGP（Border Gateway Protocol）というプロトコルが使われます※3。BGP自体は1989年に最初のバージョンが標準化されており、現在広く使われているBGP-4は1994年に初めて標準化された後、2006年にRFC 4271として改訂されています。</p>
+          <p>ここで登場するのが、AS（Autonomous System、自律システム）という単位です。ASとは、単一の技術的な管理下に置かれ、内部では共通のルーティング方針（OSPFのようなIGP）で経路を制御しているネットワークのまとまりを指し、それぞれのASには、世界で重複しないAS番号が割り当てられます※3（本書の例で使う<code>65001</code>のような番号は、実運用でも試験・社内利用向けに予約されているプライベートAS番号の範囲です）。組織同士のネットワークをつなぐということは、つまり異なるASをつなぐということです。</p>
+          <p>異なるASの間では、それぞれの組織が独自の運用方針（どの相手を優先してよいか、どの経路は使いたくないか、など）を持っているため、OSPFのような単純な「コストが一番小さい経路を選ぶ」だけでは不十分です。そこで、AS間の経路交換専用に設計されたBGP（Border Gateway Protocol）というプロトコルが使われます※4。BGP自体は1989年に最初のバージョンが標準化されており、現在広く使われているBGP-4は1994年に初めて標準化された後、2006年にRFC 4271として改訂されています。</p>
           <div class="box-slide">
             <section class="level4">
               <h4 id="ibgpとebgp">iBGPとeBGP</h4>
@@ -97,16 +97,17 @@
             <figcaption>AS内部はIGP、AS間はeBGPという役割分担</figcaption>
           </figure>
           <p>OSPFが「コストという単一の物差しで、最短経路を機械的に選ぶ」ことを得意とするのに対し、BGPは「経路そのものの情報（経由するASの並びなど）をもとに、組織ごとの事情に応じて経路を選び分けられる」という、方針（ポリシー）に基づいた柔軟な経路選択を得意とします。この違いこそが、OSPFのようなIGPと、BGPのようなEGP（Exterior Gateway Protocol）を使い分ける理由です。冒頭で触れたIXは、まさにこの多数のASが集まってBGPで経路をやり取りする、物理的・論理的な集合場所として機能しています。</p>
-          <div class="box-callout cloud">クラウドが提供するルートテーブル（Azureのルートテーブル、AWSのルートテーブルなど）も、宛先ネットワークとネクストホップの組み合わせで経路を管理するという、この章で見た考え方をそのまま踏襲しています。また、オンプレミス環境とクラウドを専用線でつなぐAzure ExpressRouteやAWS Direct Connectでは、双方の境界ルータの間でeBGPセッションを確立し、経路情報を交換する構成が広く使われています※4※5。オンプレミスとクラウドという異なる管理単位をBGPでつなぐという意味で、この章で見たAS間接続と同じ発想の延長線上にあります。</div>
+          <div class="box-callout cloud">クラウドが提供するルートテーブル（Azureのルートテーブル、AWSのルートテーブルなど）も、宛先ネットワークとネクストホップの組み合わせで経路を管理するという、この章で見た考え方をそのまま踏襲しています。また、オンプレミス環境とクラウドを専用線でつなぐAzure ExpressRouteやAWS Direct Connectでは、双方の境界ルータの間でeBGPセッションを確立し、経路情報を交換する構成が広く使われています※5※6。オンプレミスとクラウドという異なる管理単位をBGPでつなぐという意味で、この章で見たAS間接続と同じ発想の延長線上にあります。</div>
         </section>
         <section class="level2">
           <h2 id="参考文献">参考文献</h2>
           <ul>
-            <li>※1: RFC 2328, <em>OSPF Version 2</em> — <a href="https://www.rfc-editor.org/rfc/rfc2328.html">https://www.rfc-editor.org/rfc/rfc2328.html</a></li>
-            <li>※2: RFC 1930, <em>Guidelines for creation, selection, and registration of an Autonomous System (AS)</em> — <a href="https://www.rfc-editor.org/rfc/rfc1930.html">https://www.rfc-editor.org/rfc/rfc1930.html</a></li>
-            <li>※3: RFC 4271, <em>A Border Gateway Protocol 4 (BGP-4)</em> — <a href="https://www.rfc-editor.org/rfc/rfc4271.html">https://www.rfc-editor.org/rfc/rfc4271.html</a></li>
-            <li>※4: Microsoft Learn, <em>ExpressRoute: Routing requirements</em> — <a href="https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing">https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing</a></li>
-            <li>※5: AWS Direct Connect User Guide, <em>Routing policies and BGP communities</em> — <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html">https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html</a></li>
+            <li>※1: RFC 1812, <em>Requirements for IP Version 4 Routers</em>, 5.2.4.3節 — <a href="https://www.rfc-editor.org/rfc/rfc1812.html">https://www.rfc-editor.org/rfc/rfc1812.html</a></li>
+            <li>※2: RFC 2328, <em>OSPF Version 2</em> — <a href="https://www.rfc-editor.org/rfc/rfc2328.html">https://www.rfc-editor.org/rfc/rfc2328.html</a></li>
+            <li>※3: RFC 1930, <em>Guidelines for creation, selection, and registration of an Autonomous System (AS)</em> — <a href="https://www.rfc-editor.org/rfc/rfc1930.html">https://www.rfc-editor.org/rfc/rfc1930.html</a></li>
+            <li>※4: RFC 4271, <em>A Border Gateway Protocol 4 (BGP-4)</em> — <a href="https://www.rfc-editor.org/rfc/rfc4271.html">https://www.rfc-editor.org/rfc/rfc4271.html</a></li>
+            <li>※5: Microsoft Learn, <em>ExpressRoute: Routing requirements</em> — <a href="https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing">https://learn.microsoft.com/en-us/azure/expressroute/expressroute-routing</a></li>
+            <li>※6: AWS Direct Connect User Guide, <em>Routing policies and BGP communities</em> — <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html">https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html</a></li>
           </ul>
         </section>
       </section>

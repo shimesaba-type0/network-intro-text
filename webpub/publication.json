@@ -8,7 +8,7 @@
   "name": "ネットワーク基礎再入門",
   "author": "Takashi Kouno",
   "inLanguage": "ja",
-  "dateModified": "2026-11-12T13:33:41.634Z",
+  "dateModified": "2026-11-13T14:35:39.965Z",
   "readingOrder": [
     {
       "url": "manuscript/%E8%A1%A8%E7%B4%99.html",
@@ -107,7 +107,13 @@
     "assets/images/03-broadcast-storm.svg",
     "assets/images/03-domains-comparison.svg",
     "assets/images/03-ethernet-frame.svg",
+    "assets/images/04-cidr-allocation.svg",
     "assets/images/04-encapsulation.svg",
+    "assets/images/04-ip-mac-per-hop.svg",
+    "assets/images/04-ipv4-32bit.svg",
+    "assets/images/04-mac-vs-ip.svg",
+    "assets/images/04-route-aggregation.svg",
+    "assets/images/04-subnet-mask-and.svg",
     "assets/images/04-subnet-mask.svg",
     "assets/images/05-as-boundary.svg",
     "assets/images/05-multihop-routing.svg",
